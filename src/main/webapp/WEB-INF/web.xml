@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- Configuration for the ProductServlet -->
+    <servlet>
+        <servlet-name>productServlet</servlet-name>
+        <servlet-class>io.nightovis.ztp.ProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productServlet</servlet-name>
+        <url-pattern>/products/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Configuration for the OrderServlet -->
+    <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>io.nightovis.ztp.OrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/orders/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
