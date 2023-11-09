@@ -1,4 +1,4 @@
-package io.nightovis.ztp.domain;
+package io.nightovis.ztp.model.domain;
 
 public record Product(
 	long id,

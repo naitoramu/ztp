@@ -11,7 +11,7 @@
     <!-- Configuration for the ProductServlet -->
     <servlet>
         <servlet-name>productServlet</servlet-name>
-        <servlet-class>io.nightovis.ztp.servlet.ProductServlet</servlet-class>
+        <servlet-class>io.nightovis.ztp.api.servlet.ProductServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -22,7 +22,7 @@
     <!-- Configuration for the OrderServlet -->
     <servlet>
         <servlet-name>orderServlet</servlet-name>
-        <servlet-class>io.nightovis.ztp.servlet.OrderServlet</servlet-class>
+        <servlet-class>io.nightovis.ztp.api.servlet.OrderServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -1,4 +1,4 @@
-package io.nightovis.ztp;
+package io.nightovis.ztp.problem;
 
 import jakarta.validation.ConstraintViolation;
 

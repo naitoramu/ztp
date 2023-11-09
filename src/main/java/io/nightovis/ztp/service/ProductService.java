@@ -1,8 +1,8 @@
 package io.nightovis.ztp.service;
 
-import io.nightovis.ztp.ProblemOccurredException;
-import io.nightovis.ztp.Problems;
-import io.nightovis.ztp.domain.Product;
+import io.nightovis.ztp.problem.ProblemOccurredException;
+import io.nightovis.ztp.problem.Problems;
+import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.repository.ProductRepository;
 
 import java.util.Optional;

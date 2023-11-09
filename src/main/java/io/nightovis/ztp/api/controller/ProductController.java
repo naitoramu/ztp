@@ -1,11 +1,11 @@
-package io.nightovis.ztp.controller;
+package io.nightovis.ztp.api.controller;
 
-import io.nightovis.ztp.ProblemOccurredException;
-import io.nightovis.ztp.Problems;
-import io.nightovis.ztp.dto.ProductDto;
-import io.nightovis.ztp.mapper.ProductMapper;
+import io.nightovis.ztp.api.servlet.ResponseEntity;
+import io.nightovis.ztp.problem.ProblemOccurredException;
+import io.nightovis.ztp.problem.Problems;
+import io.nightovis.ztp.model.dto.ProductDto;
+import io.nightovis.ztp.model.mapper.ProductMapper;
 import io.nightovis.ztp.service.ProductService;
-import io.nightovis.ztp.servlet.ResponseEntity;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

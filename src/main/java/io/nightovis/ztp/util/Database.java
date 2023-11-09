@@ -1,4 +1,4 @@
-package io.nightovis.ztp;
+package io.nightovis.ztp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

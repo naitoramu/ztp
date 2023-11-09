@@ -1,8 +1,10 @@
-package io.nightovis.ztp;
+package io.nightovis.ztp.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import io.nightovis.ztp.problem.ProblemOccurredException;
+import io.nightovis.ztp.problem.Problems;
 
 public class JsonMapper {
 

@@ -1,7 +1,7 @@
-package io.nightovis.ztp.mapper;
+package io.nightovis.ztp.model.mapper;
 
-import io.nightovis.ztp.domain.Product;
-import io.nightovis.ztp.dto.ProductDto;
+import io.nightovis.ztp.model.domain.Product;
+import io.nightovis.ztp.model.dto.ProductDto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

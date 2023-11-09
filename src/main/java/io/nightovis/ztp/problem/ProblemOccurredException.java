@@ -1,4 +1,4 @@
-package io.nightovis.ztp;
+package io.nightovis.ztp.problem;
 
 public class ProblemOccurredException extends RuntimeException {
 	private final Problem problem;

@@ -1,6 +1,7 @@
-package io.nightovis.ztp;
+package io.nightovis.ztp.problem;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.nightovis.ztp.util.JsonMapper;
 import jakarta.validation.ConstraintViolation;
 
 import java.util.Set;

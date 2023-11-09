@@ -1,4 +1,4 @@
-package io.nightovis.ztp.dto;
+package io.nightovis.ztp.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package io.nightovis.ztp.servlet;
+package io.nightovis.ztp.api.servlet;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

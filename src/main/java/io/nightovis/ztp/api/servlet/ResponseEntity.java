@@ -1,6 +1,6 @@
-package io.nightovis.ztp.servlet;
+package io.nightovis.ztp.api.servlet;
 
-import io.nightovis.ztp.JsonMapper;
+import io.nightovis.ztp.util.JsonMapper;
 
 import java.net.HttpURLConnection;
 
