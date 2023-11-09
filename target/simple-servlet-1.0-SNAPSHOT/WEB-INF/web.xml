@@ -4,10 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <listener>
+        <listener-class>io.nightovis.ztp.AppContextListener</listener-class>
+    </listener>
+
     <!-- Configuration for the ProductServlet -->
     <servlet>
         <servlet-name>productServlet</servlet-name>
-        <servlet-class>io.nightovis.ztp.ProductServlet</servlet-class>
+        <servlet-class>io.nightovis.ztp.servlet.ProductServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -18,7 +22,7 @@
     <!-- Configuration for the OrderServlet -->
     <servlet>
         <servlet-name>orderServlet</servlet-name>
-        <servlet-class>io.nightovis.ztp.OrderServlet</servlet-class>
+        <servlet-class>io.nightovis.ztp.servlet.OrderServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
