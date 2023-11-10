@@ -42,11 +42,6 @@
             <artifactId>hibernate-validator</artifactId>
             <version>8.0.1.Final</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>jakarta.validation</groupId>-->
-<!--            <artifactId>jakarta.validation-api</artifactId>-->
-<!--            <version>3.0.2</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -65,9 +60,6 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>11.0.18</version>
-                <configuration>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                </configuration>
             </plugin>
         </plugins>
     </build>

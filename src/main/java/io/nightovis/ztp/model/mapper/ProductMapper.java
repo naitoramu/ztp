@@ -2,10 +2,13 @@ package io.nightovis.ztp.model.mapper;
 
 import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.model.dto.ProductDto;
+import io.nightovis.ztp.service.OrderService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class ProductMapper {
@@ -51,5 +54,24 @@ public class ProductMapper {
 			dto.price(),
 			dto.availableQuantity()
 		);
+	}
+
+	public static Map<Long, OrderService.ProductInfo> toIdQuantityMap(ResultSet resultSet) throws SQLException {
+		Map<Long, OrderService.ProductInfo> idToQuantity = new HashMap<>();
+		if (resultSet == null) {
+			return idToQuantity;
+		}
+
+		while (resultSet.next()) {
+			idToQuantity.put(
+				resultSet.getLong("id"),
+				new OrderService.ProductInfo(
+					resultSet.getDouble("price"),
+					resultSet.getLong("available_quantity")
+				)
+			);
+		}
+
+		return idToQuantity;
 	}
 }

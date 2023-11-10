@@ -1,19 +1,24 @@
 package io.nightovis.ztp.repository;
 
+import io.nightovis.ztp.service.OrderService;
 import io.nightovis.ztp.util.Database;
 import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.model.mapper.ProductMapper;
 
 import java.sql.*;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProductRepository {
 
 	private static final String SELECT_ALL_PRODUCTS_QUERY = "SELECT id, name, description, price, available_quantity FROM product";
 	private static final String SELECT_PRODUCT_BY_ID_QUERY = "SELECT id, name, description, price, available_quantity FROM product WHERE id = ?";
+	private static final String SELECT_PRODUCTS_INFO_QUERY = "SELECT id, price, available_quantity FROM product WHERE id IN (%s)";
 	private static final String INSERT_PRODUCT_QUERY = "INSERT INTO product (name, description, price, available_quantity) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_PRODUCT_QUERY = "UPDATE product SET name = ?, description = ?, price = ?, available_quantity = ? WHERE id = ?";
+	private static final String UPDATE_PRODUCTS_QUANTITY_QUERY = "UPDATE product SET available_quantity = ? WHERE id = ?";
 	private static final String DELETE_PRODUCT_QUERY = "DELETE FROM product WHERE id = ?";
 
 	public static Set<Product> fetchAllProducts() {
@@ -30,6 +35,16 @@ public class ProductRepository {
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			return resultSet.next() ? Optional.of(ProductMapper.toDomain(resultSet)) : Optional.empty();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static Map<Long, OrderService.ProductInfo> fetchProductsQuantity(Set<Long> productIds) {
+		String query = String.format(SELECT_PRODUCTS_INFO_QUERY, productIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
+		try (Statement statement = Database.getConnection().createStatement()) {
+			ResultSet resultSet = statement.executeQuery(query);
+			return ProductMapper.toIdQuantityMap(resultSet);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -55,6 +70,26 @@ public class ProductRepository {
 			statement.setLong(5, id);
 			int affectedRows = statement.executeUpdate();
 			return retrieveGeneratedProduct(statement, affectedRows);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static void updateProductsQuantity(Map<Long, Long> productIdToQuantity) {
+		try (PreparedStatement statement = Database.getConnection().prepareStatement(UPDATE_PRODUCTS_QUANTITY_QUERY)) {
+
+			productIdToQuantity.forEach((id, quantity) -> {
+				try {
+					statement.setLong(1, quantity);
+					statement.setLong(2, id);
+					statement.addBatch();
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
+			});
+
+			statement.clearParameters();
+			statement.executeBatch();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

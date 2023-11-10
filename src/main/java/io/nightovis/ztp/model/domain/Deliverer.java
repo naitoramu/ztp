@@ -12,7 +12,14 @@ public interface Deliverer {
 		};
 	}
 
-	public double calculateShippingCost(AddressDetails addressDetails);
+	static Deliverer fromMethod(ShippingMethod method) {
+		return switch (method) {
+			case POSTAL -> new Post();
+			case COURIER -> new Courier();
+		};
+	}
+
+	double calculateShippingCost(AddressDetails addressDetails);
 
 	ShippingMethod method();
 }

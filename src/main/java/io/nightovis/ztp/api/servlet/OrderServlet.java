@@ -47,8 +47,8 @@ public class OrderServlet extends HttpServlet {
     private ResponseEntity<?> handleGetRequest(String pathInfo) throws ProblemOccurredException {
         if (pathInfo == null || pathInfo.equals("/")) {
             return OrderController.fetchAll();
-//        } else if (pathInfo.startsWith("/")) {
-//            return OrderController.fetchById(extractId(pathInfo));
+        } else if (pathInfo.startsWith("/")) {
+            return OrderController.fetchById(extractId(pathInfo));
         } else {
             throw pathNotFoundException(pathInfo);
         }
@@ -67,15 +67,15 @@ public class OrderServlet extends HttpServlet {
         response.setContentType(ResponseEntity.ContentType.JSON_PROBLEM.toString());
         response.getWriter().write(e.problem().serialize());
     }
-//
-//    private Long extractId(String path) {
-//        String substring = path.substring(1);
-//        try {
-//            return Long.parseLong(substring);
-//        } catch (NumberFormatException exception) {
-//            throw new ProblemOccurredException(Problems.badRequest("Invalid order ID '" + substring + "'"));
-//        }
-//    }
+
+    private Long extractId(String path) {
+        String substring = path.substring(1);
+        try {
+            return Long.parseLong(substring);
+        } catch (NumberFormatException exception) {
+            throw new ProblemOccurredException(Problems.badRequest("Invalid order ID '" + substring + "'"));
+        }
+    }
 
     private static OrderDto deserializeBody(HttpServletRequest request) throws ProblemOccurredException {
         String stringBody;

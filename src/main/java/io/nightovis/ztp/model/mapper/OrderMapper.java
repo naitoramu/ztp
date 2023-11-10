@@ -72,4 +72,34 @@ public class OrderMapper {
 			orderProduct.cost()
 		);
 	}
+
+	public static Order toDomain(OrderDto dto) {
+		Deliverer deliverer = Deliverer.fromMethod(dto.shippingMethod());
+		AddressDetails addressDetails = new AddressDetails(
+			dto.addressDetails().firstName(),
+			dto.addressDetails().lastName(),
+			dto.addressDetails().address(),
+			dto.addressDetails().postalCode(),
+			dto.addressDetails().city()
+		);
+
+		return new Order(
+			dto.id(),
+			addressDetails,
+			dto.orderProducts().stream().map(OrderMapper::toDomain).collect(Collectors.toSet()),
+			dto.totalCost(),
+			deliverer.calculateShippingCost(addressDetails),
+			deliverer
+		);
+	}
+
+	public static OrderProduct toDomain(OrderProductDto product) {
+		return new OrderProduct(
+			product.id(),
+			product.quantity(),
+			product.name(),
+			product.description(),
+			product.cost()
+		);
+	}
 }

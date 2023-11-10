@@ -48,4 +48,13 @@ public class Problems {
 			null
 		);
 	}
+
+	public static Problem exceedingAvailableQuantity(long id, long quantity, long availableQuantity) {
+		return new Problem(
+			422,
+			"Excessive quantity",
+			"Quantity = " + quantity + " is to much for product with ID = " + id + ". Available quantity: " + availableQuantity,
+			null
+		);
+	}
 }

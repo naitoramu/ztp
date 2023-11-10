@@ -6,16 +6,12 @@ import io.nightovis.ztp.problem.Problems;
 import io.nightovis.ztp.model.dto.ProductDto;
 import io.nightovis.ztp.model.mapper.ProductMapper;
 import io.nightovis.ztp.service.ProductService;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
+import io.nightovis.ztp.util.Validation;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ProductController {
-
-	private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	public static ResponseEntity<Set<ProductDto>> fetchAllProducts() {
 		Set<ProductDto> products = ProductService.fetchAllProducts().stream()
@@ -34,14 +30,14 @@ public class ProductController {
 	}
 
 	public static ResponseEntity<ProductDto> create(ProductDto product) throws ProblemOccurredException {
-		validateProduct(product);
+		Validation.validate(product);
 		ProductDto createdProduct = ProductMapper.toDto(ProductService.create(ProductMapper.toDomain(product)));
 		String location = "/products/" + createdProduct.id();
 		return ResponseEntity.created(createdProduct, location);
 	}
 
 	public static ResponseEntity<ProductDto> update(long id, ProductDto product) throws ProblemOccurredException {
-		validateProduct(product);
+		Validation.validate(product);
 		ProductDto updatedProduct = ProductMapper.toDto(ProductService.update(id, ProductMapper.toDomain(product)));
 
 		return ResponseEntity.ok(updatedProduct);
@@ -51,12 +47,5 @@ public class ProductController {
 		ProductService.delete(id);
 
 		return ResponseEntity.noContent();
-	}
-
-	private static void validateProduct(ProductDto product) {
-		Set<ConstraintViolation<ProductDto>> violations = validator.validate(product);
-		if (!violations.isEmpty()) {
-			throw new ProblemOccurredException(Problems.validationError(violations));
-		}
 	}
 }
