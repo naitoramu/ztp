@@ -1,16 +1,15 @@
 package io.nightovis.ztp.api.servlet;
 
 import io.nightovis.ztp.api.controller.ProductController;
-import io.nightovis.ztp.util.JsonMapper;
+import io.nightovis.ztp.model.dto.ProductDto;
 import io.nightovis.ztp.problem.ProblemOccurredException;
 import io.nightovis.ztp.problem.Problems;
-import io.nightovis.ztp.model.dto.ProductDto;
+import io.nightovis.ztp.util.JsonMapper;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.util.stream.Collectors;
 
 public class ProductServlet extends HttpServlet {
@@ -40,9 +39,6 @@ public class ProductServlet extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 
 		try {
-			response.setContentType(ResponseEntity.ContentType.JSON.toString());
-			setResponseStatus(response, method);
-
 			ResponseEntity<?> responseEntity = switch (method) {
 				case GET -> handleGetRequest(pathInfo);
 				case POST -> handlePostRequest(request, pathInfo);
@@ -56,14 +52,6 @@ public class ProductServlet extends HttpServlet {
 
 		} catch (ProblemOccurredException e) {
 			handleException(response, e);
-		}
-	}
-
-	private void setResponseStatus(HttpServletResponse response, HttpMethod method) {
-		if (method == HttpMethod.DELETE) {
-			response.setStatus(HttpURLConnection.HTTP_NO_CONTENT);
-		} else {
-			response.setStatus(HttpURLConnection.HTTP_OK);
 		}
 	}
 
@@ -131,7 +119,4 @@ public class ProductServlet extends HttpServlet {
 		return new ProblemOccurredException(Problems.pathNotFound("/products" + pathInfo));
 	}
 
-	private enum HttpMethod {
-		GET, POST, PUT, DELETE
-	}
 }

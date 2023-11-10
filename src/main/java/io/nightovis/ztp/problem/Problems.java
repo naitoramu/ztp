@@ -1,5 +1,6 @@
 package io.nightovis.ztp.problem;
 
+import io.nightovis.ztp.api.servlet.HttpMethod;
 import jakarta.validation.ConstraintViolation;
 
 import java.net.HttpURLConnection;
@@ -35,6 +36,15 @@ public class Problems {
 			HttpURLConnection.HTTP_NOT_FOUND,
 			"Not found",
 			"The system could not find path '" + path + "'",
+			null
+		);
+	}
+
+	public static Problem badMethod(HttpMethod method) {
+		return new Problem(
+			HttpURLConnection.HTTP_BAD_METHOD,
+			"Bad method",
+			"Http method '" + method.toString() + "' not allowed.",
 			null
 		);
 	}
