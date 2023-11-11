@@ -67,7 +67,8 @@ W aplikacji został zaimplementowany `CorsFilter`. Filtr ten przechwytuje każde
  - "Access-Control-Allow-Headers": "Content-Type, Authorization"
 
 ## Pozostałe
-Komponenty znajdujące się w pakiecie `model.dto` służą do translacji treści żądań na obiekty w języku Java oraz w drugą stronę.
-Komponenty znajdujące się w pakiecie `model.domain` służą do reprezentowania danych otrzymanych od użytkownika lub z bazy danych i wykonywanie na nich operacji związanych z logiką biznesową.
-Komponenty znajdujące się w pakiecie `model.mapper` służą do translacji obiektów pomiędzy bazą danych, serwisami oraz kontrolerami.
-Komponenty znajdujące się w pakiecie `problem` wykorzystywane są do tworzenia własnych wyjątków i przekazywania do nich informacji, które następnie zwracane są do użytkownika.
+ - Komponenty znajdujące się w pakiecie `model.dto` służą do translacji treści żądań na obiekty w języku Java oraz w drugą stronę.
+ - Komponenty znajdujące się w pakiecie `model.domain` służą do reprezentowania danych otrzymanych od użytkownika lub z bazy danych i wykonywanie na nich operacji związanych z logiką biznesową.
+ - Komponenty znajdujące się w pakiecie `model.mapper` służą do translacji obiektów pomiędzy bazą danych, serwisami oraz kontrolerami.
+ - Komponenty znajdujące się w pakiecie `problem` wykorzystywane są do tworzenia własnych wyjątków i przekazywania do nich informacji, które następnie zwracane są do użytkownika.
+ - Komponenty znajdujące się w pakiecie `util` oraz `api.servlet.util` to klasy pomocnicze
