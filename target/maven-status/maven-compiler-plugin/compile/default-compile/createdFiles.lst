@@ -1,4 +1,5 @@
 io/nightovis/ztp/problem/ProblemOccurredException.class
+io/nightovis/ztp/util/Validation.class
 io/nightovis/ztp/util/JsonMapper.class
 io/nightovis/ztp/AppContextListener.class
 io/nightovis/ztp/api/servlet/ResponseEntity$ContentType.class
@@ -6,6 +7,7 @@ io/nightovis/ztp/model/mapper/ProductMapper.class
 io/nightovis/ztp/api/controller/ProductController.class
 io/nightovis/ztp/api/servlet/ResponseEntity.class
 io/nightovis/ztp/model/domain/Order.class
+io/nightovis/ztp/api/servlet/CorsFilter.class
 io/nightovis/ztp/api/servlet/OrderServlet.class
 io/nightovis/ztp/model/mapper/OrderMapper.class
 io/nightovis/ztp/model/domain/Product.class
@@ -14,8 +16,10 @@ io/nightovis/ztp/model/dto/ProductDto.class
 io/nightovis/ztp/problem/Problem$Violation.class
 io/nightovis/ztp/model/dto/AddressDetailsDto.class
 io/nightovis/ztp/model/domain/Deliverer.class
+io/nightovis/ztp/service/OrderService$ProductInfo.class
 io/nightovis/ztp/api/servlet/HttpMethod.class
 io/nightovis/ztp/service/ProductService.class
+io/nightovis/ztp/model/domain/Deliverer$1.class
 io/nightovis/ztp/model/domain/OrderProduct.class
 io/nightovis/ztp/problem/Problems.class
 io/nightovis/ztp/model/mapper/OrderProductMapper.class

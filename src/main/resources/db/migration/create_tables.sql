@@ -3,8 +3,9 @@ CREATE TABLE product
 	id                 INT AUTO_INCREMENT PRIMARY KEY,
 	name               VARCHAR(256) NOT NULL,
 	description        VARCHAR(1024),
-	price DOUBLE NOT NULL,
-	available_quantity INT          NOT NULL
+	price 			   DOUBLE 		NOT NULL,
+	available_quantity INT          NOT NULL,
+	is_deleted         BOOLEAN      NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE order_info
@@ -37,10 +38,9 @@ VALUES ('Product A', 'Description for Product A', 10.99, 5),
 	   ('Product C', 'Description for Product C', 29.99, 3);
 
 INSERT INTO order_info (first_name, last_name, address, postal_code, city, total_cost, shipping_cost, shipping_method)
-VALUES
-	('John', 'Doe', '123 Main St', '123456', 'Cityville', 150.00, 10.00, 'POSTAL'),
-	('Jane', 'Smith', '456 Oak St', '654321', 'Townton', 200.00, 15.00, 'COURIER'),
-	('Alice', 'Johnson', '789 Pine St', '987654', 'Villagetown', 100.00, 8.00, 'POSTAL');
+VALUES ('John', 'Doe', '123 Main St', '123456', 'Cityville', 150.00, 10.00, 'POSTAL'),
+	   ('Jane', 'Smith', '456 Oak St', '654321', 'Townton', 200.00, 15.00, 'COURIER'),
+	   ('Alice', 'Johnson', '789 Pine St', '987654', 'Villagetown', 100.00, 8.00, 'POSTAL');
 
 
 INSERT INTO order_product (order_id, product_id, quantity)

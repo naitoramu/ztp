@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #productTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #productTable th, #productTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #productTable th {
+            background-color: #f2f2f2;
+        }
+
+        #productTable button {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        #productTable button:hover {
+            background-color: #cc0000;
+        }
+
+        form {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label, input, textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product List</h2>
+
+    <form id="productForm">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="name" required>
+
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" name="description" required></textarea>
+
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" name="price" step="0.01" required>
+
+        <label for="productQuantity">Available Quantity:</label>
+        <input type="number" id="productQuantity" name="availableQuantity" required>
+
+        <button type="button" onclick="addProduct()">Add Product</button>
+    </form>
+
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Product data will be inserted here dynamically -->
+        </tbody>
+    </table>
+
+<script>
+        // Fetch and display products on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchProducts();
+    });
+
+    function fetchProducts() {
+        fetch('http://localhost:8080/products')
+            .then(response => response.json())
+            .then(products => displayProducts(products))
+            .catch(error => console.error('Error fetching products:', error));
+    }
+
+    function displayProducts(products) {
+        const tableBody = document.querySelector('#productTable tbody');
+        tableBody.innerHTML = ''; // Clear existing data
+
+        products.forEach(product => {
+            const row = tableBody.insertRow();
+            row.innerHTML = `<td>${product.id}</td>
+                                <td>${product.name}</td>
+                                <td>${product.description}</td>
+                                <td>${product.price}</td>
+                                <td>${product.availableQuantity}</td>
+                                <td><button onclick="deleteProduct(${product.id})">Delete</button></td>`;
+        });
+    }
+
+    function addProduct() {
+        const productData = {
+            name: document.getElementById('productName').value,
+            description: document.getElementById('productDescription').value,
+            price: parseFloat(document.getElementById('productPrice').value),
+            availableQuantity: parseInt(document.getElementById('productQuantity').value),
+        };
+
+        fetch('http://localhost:8080/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(productData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Product added:', data);
+                // Refresh the product list after adding a new product
+                fetchProducts();
+            })
+            .catch(error => console.error('Error adding product:', error));
+    }
+
+    function deleteProduct(productId) {
+        fetch(`http://localhost:8080/products/${productId}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Product deleted successfully');
+                    // Refresh the product list after deleting a product
+                    fetchProducts();
+                } else {
+                    console.error('Error deleting product');
+                }
+            })
+            .catch(error => console.error('Error deleting product:', error));
+    }
+</script>
+</body>
+</html>

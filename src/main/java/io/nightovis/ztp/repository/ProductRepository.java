@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 
 public class ProductRepository {
 
-	private static final String SELECT_ALL_PRODUCTS_QUERY = "SELECT id, name, description, price, available_quantity FROM product";
-	private static final String SELECT_PRODUCT_BY_ID_QUERY = "SELECT id, name, description, price, available_quantity FROM product WHERE id = ?";
+	private static final String SELECT_AVAILABLE_PRODUCTS_QUERY = "SELECT id, name, description, price, available_quantity FROM product WHERE is_deleted = FALSE";
+	private static final String SELECT_AVAILABLE_PRODUCT_BY_ID_QUERY = "SELECT id, name, description, price, available_quantity FROM product WHERE is_deleted = FALSE AND id = ?";
 	private static final String SELECT_PRODUCTS_INFO_QUERY = "SELECT id, price, available_quantity FROM product WHERE id IN (%s)";
 	private static final String INSERT_PRODUCT_QUERY = "INSERT INTO product (name, description, price, available_quantity) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE_PRODUCT_QUERY = "UPDATE product SET name = ?, description = ?, price = ?, available_quantity = ? WHERE id = ?";
 	private static final String UPDATE_PRODUCTS_QUANTITY_QUERY = "UPDATE product SET available_quantity = ? WHERE id = ?";
-	private static final String DELETE_PRODUCT_QUERY = "DELETE FROM product WHERE id = ?";
+	private static final String DELETE_PRODUCT_QUERY = "UPDATE product SET is_deleted = TRUE WHERE id = ?";
 
 	public static Set<Product> fetchAllProducts() {
 		try (Statement statement = Database.getConnection().createStatement()) {
-			ResultSet resultSet = statement.executeQuery(SELECT_ALL_PRODUCTS_QUERY);
+			ResultSet resultSet = statement.executeQuery(SELECT_AVAILABLE_PRODUCTS_QUERY);
 			return ProductMapper.toDomainSet(resultSet);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -31,7 +31,8 @@ public class ProductRepository {
 	}
 
 	public static Optional<Product> fetchProductById(long id) {
-		try (PreparedStatement statement = Database.getConnection().prepareStatement(SELECT_PRODUCT_BY_ID_QUERY)) {
+		try (PreparedStatement statement = Database.getConnection().prepareStatement(
+			SELECT_AVAILABLE_PRODUCT_BY_ID_QUERY)) {
 			statement.setLong(1, id);
 			ResultSet resultSet = statement.executeQuery();
 			return resultSet.next() ? Optional.of(ProductMapper.toDomain(resultSet)) : Optional.empty();
