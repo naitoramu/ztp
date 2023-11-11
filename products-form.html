@@ -71,42 +71,42 @@
     </style>
 </head>
 <body>
-    <h2>Product List</h2>
+<h2>Product List</h2>
 
-    <form id="productForm">
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" name="name" required>
+<form id="productForm">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" name="name" required>
 
-        <label for="productDescription">Product Description:</label>
-        <textarea id="productDescription" name="description" required></textarea>
+    <label for="productDescription">Product Description:</label>
+    <textarea id="productDescription" name="description" required></textarea>
 
-        <label for="productPrice">Product Price:</label>
-        <input type="number" id="productPrice" name="price" step="0.01" required>
+    <label for="productPrice">Product Price:</label>
+    <input type="number" id="productPrice" name="price" step="0.01" required>
 
-        <label for="productQuantity">Available Quantity:</label>
-        <input type="number" id="productQuantity" name="availableQuantity" required>
+    <label for="productQuantity">Available Quantity:</label>
+    <input type="number" id="productQuantity" name="availableQuantity" required>
 
-        <button type="button" onclick="addProduct()">Add Product</button>
-    </form>
+    <button type="button" onclick="addProduct()">Add Product</button>
+</form>
 
-    <table id="productTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Product data will be inserted here dynamically -->
-        </tbody>
-    </table>
+<table id="productTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Product data will be inserted here dynamically -->
+    </tbody>
+</table>
 
 <script>
-        // Fetch and display products on page load
+    // Fetch and display products on page load
     document.addEventListener('DOMContentLoaded', function () {
         fetchProducts();
     });
@@ -134,6 +134,9 @@
     }
 
     function addProduct() {
+        // Clear previous errors
+        clearErrors();
+
         const productData = {
             name: document.getElementById('productName').value,
             description: document.getElementById('productDescription').value,
@@ -148,14 +151,55 @@
             },
             body: JSON.stringify(productData),
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json().then(error => Promise.reject(error));
+                }
+            })
             .then(data => {
                 console.log('Product added:', data);
                 // Refresh the product list after adding a new product
                 fetchProducts();
             })
-            .catch(error => console.error('Error adding product:', error));
+            .catch(error => {
+                console.error('Error adding product:', error);
+
+                if (error && error.details) {
+                    // Display error message if applicable
+                    alert(error.details);
+                }
+                if (error.statusCode === 400 && error.error === 'Validation error') {
+                    displayValidationErrors(error.violations);
+                }
+            });
     }
+
+    function displayValidationErrors(violations) {
+        const errorList = document.createElement('ul');
+
+        violations.forEach(violation => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${violation.field}: ${violation.message}`;
+            errorList.appendChild(listItem);
+        });
+
+        // Display the error list in your form
+        const form = document.getElementById('productForm');
+        form.appendChild(errorList);
+    }
+
+    function clearErrors() {
+        // Remove the error list from the form
+        const form = document.getElementById('productForm');
+        const errorList = form.querySelector('ul');
+
+        if (errorList) {
+            form.removeChild(errorList);
+        }
+    }
+
 
     function deleteProduct(productId) {
         fetch(`http://localhost:8080/products/${productId}`, {

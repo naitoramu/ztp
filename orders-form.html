@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #orderTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #orderTable th, #orderTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #orderTable th {
+            background-color: #f2f2f2;
+        }
+
+        .nested-list {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .nested-list table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .nested-list th, .nested-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .nested-list th {
+            background-color: #f2f2f2;
+        }
+
+        #orderForm {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 50%;
+        }
+
+        #orderForm label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        #orderForm select, #orderForm input {
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        #orderForm button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+        }
+
+        #orderForm button:hover {
+            background-color: #45a049;
+        }
+
+        #productSelectionContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        #productSelectionContainer label {
+            margin-bottom: 8px;
+        }
+
+        #productSelectionContainer select,
+        #productSelectionContainer input,
+        #productSelectionContainer button {
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #productSelectionContainer button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        #productSelectionContainer button:hover {
+            background-color: #45a049;
+        }
+
+        #orderedProductsContainer {
+            margin-top: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #orderedProductsList {
+            list-style: none;
+            padding: 0;
+        }
+
+        #orderedProductsList li {
+            margin-bottom: 10px;
+        }
+
+        #orderedProductsList button {
+            background-color: #ff6666;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+
+        #orderedProductsList button:hover {
+            background-color: #cc0000;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="orderForm">
+    <h2>Create New Order</h2>
+    <form id="newOrderForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="postalCode">Postal Code:</label>
+        <input type="text" id="postalCode" name="postalCode" required>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="shippingMethod">Shipping Method:</label>
+        <select id="shippingMethod" name="shippingMethod" required>
+            <option value="POSTAL">Postal</option>
+            <option value="COURIER">Courier</option>
+        </select>
+
+        <div id="productSelection">
+            <label for="productDropdown">Select Product:</label>
+            <select id="productDropdown">
+                <!-- Product options will be inserted here dynamically -->
+            </select>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+
+            <button type="button" onclick="addProductToOrder()">Add Product</button>
+        </div>
+
+        <h3>Ordered Products</h3>
+        <ul id="orderedProductsList">
+            <!-- Ordered products will be inserted here dynamically -->
+        </ul>
+
+        <button type="button" onclick="submitOrder()">Submit Order</button>
+
+    </form>
+</div>
+
+<h2>Order List</h2>
+<table id="orderTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Postal Code</th>
+        <th>City</th>
+        <th>Total Cost</th>
+        <th>Shipping Cost</th>
+        <th>Shipping Method</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Order data will be inserted here dynamically -->
+    </tbody>
+
+</table>
+
+<div id="orderDetails" class="nested-list"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchOrders();
+        fetchProductsForOrderForm();
+    });
+
+    function fetchOrders() {
+        fetch('http://localhost:8080/orders')
+            .then(response => response.json())
+            .then(orders => displayOrders(orders))
+            .catch(error => console.error('Error fetching orders:', error));
+    }
+
+    function displayOrders(orders) {
+        const tableBody = document.querySelector('#orderTable tbody');
+        tableBody.innerHTML = '';
+
+        orders.forEach(order => {
+            const row = tableBody.insertRow();
+            row.innerHTML = `<td>${order.id}</td>
+                                    <td>${order.addressDetails.firstName} ${order.addressDetails.lastName}</td>
+                                    <td>${order.addressDetails.firstName}</td>
+                                    <td>${order.addressDetails.lastName}</td>
+                                    <td>${order.addressDetails.address}</td>
+                                    <td>${order.addressDetails.postalCode}</td>
+                                    <td>${order.addressDetails.city}</td>
+                                    <td>${order.totalCost}</td>
+                                    <td>${order.shippingCost}</td>
+                                    <td>${order.shippingMethod}</td>
+                                    <td><button onclick="toggleOrderDetails(${order.id})">Show products</button></td>`;
+        });
+    }
+
+    function fetchProductsForOrderForm() {
+        fetch('http://localhost:8080/products')
+            .then(response => response.json())
+            .then(products => {
+                const productDropdown = document.getElementById('productDropdown');
+                productDropdown.innerHTML = '';
+
+                products.forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.id;
+                    option.textContent = `${product.name} - ${product.description}`;
+                    productDropdown.appendChild(option);
+                });
+
+                // Show or hide product selection fields based on available products
+                const productSelection = document.getElementById('productSelection');
+                productSelection.style.display = products.length > 0 ? 'block' : 'none';
+            })
+            .catch(error => console.error('Error fetching products for order form:', error));
+    }
+
+    function toggleOrderDetails(orderId) {
+        const orderDetailsContainer = document.getElementById('orderDetails');
+        orderDetailsContainer.innerHTML = '';
+
+        fetch(`http://localhost:8080/orders/${orderId}`)
+            .then(response => response.json())
+            .then(order => {
+                const nestedTable = document.createElement('table');
+                nestedTable.innerHTML = `<thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Description</th>
+                                                        <th>Quantity</th>
+                                                        <th>Cost</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Order products will be inserted here dynamically -->
+                                                </tbody>`;
+
+                const nestedTableBody = nestedTable.querySelector('tbody');
+
+                order.orderProducts.forEach(product => {
+                    const nestedRow = nestedTableBody.insertRow();
+                    nestedRow.innerHTML = `<td>${product.id}</td>
+                                                    <td>${product.name}</td>
+                                                    <td>${product.description}</td>
+                                                    <td>${product.quantity}</td>
+                                                    <td>${product.cost}</td>`;
+                });
+
+                orderDetailsContainer.appendChild(nestedTable);
+            })
+            .catch(error => console.error('Error fetching order details:', error));
+    }
+
+    function addProductToOrder() {
+        const productDropdown = document.getElementById('productDropdown');
+        const productId = productDropdown.value;
+        const productName = productDropdown.options[productDropdown.selectedIndex].text;
+        const quantity = document.getElementById('quantity').value;
+
+        // Remove the selected product from the available products dropdown
+        productDropdown.remove(productDropdown.selectedIndex);
+
+        const orderedProductsList = document.getElementById('orderedProductsList');
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${productName} - Quantity: ${quantity} <button onclick="removeProductFromOrder(this)">Remove</button>`;
+        listItem.dataset.productId = productId;
+        listItem.dataset.quantity = quantity;
+
+        orderedProductsList.appendChild(listItem);
+
+        // Show or hide product selection fields based on available products
+        const productSelection = document.getElementById('productSelection');
+        productSelection.style.display = productDropdown.options.length > 0 ? 'block' : 'none';
+
+        // Hide quantity input and add product button when the list is empty
+        const quantityAndAdd = document.getElementById('quantityAndAdd');
+        quantityAndAdd.style.display = 'none';
+    }
+
+    function removeProductFromOrder(buttonElement) {
+        const listItem = buttonElement.closest('li');
+        const productId = listItem.dataset.productId;
+        const productName = listItem.textContent.split(' - ')[0];
+        const productDescription = listItem.textContent.split(' - ')[1].trim(); // Get the description
+
+        // Add the removed product back to the available products dropdown
+        const productDropdown = document.getElementById('productDropdown');
+        const option = document.createElement('option');
+        option.value = productId;
+        option.textContent = `${productName} - ${productDescription}`; // Include both name and description
+        productDropdown.appendChild(option);
+
+        listItem.remove();
+
+        // Show or hide product selection fields based on available products
+        const productSelection = document.getElementById('productSelection');
+        productSelection.style.display = productDropdown.options.length > 0 ? 'block' : 'none';
+    }
+
+    function submitOrder() {
+        // Clear previous errors
+        clearOrderFormErrors();
+
+        const customerData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            address: document.getElementById('address').value,
+            postalCode: document.getElementById('postalCode').value,
+            city: document.getElementById('city').value,
+        };
+
+        const shippingMethod = document.getElementById("shippingMethod").value;
+
+        const orderedProductsList = document.getElementById('orderedProductsList');
+        const orderedProducts = Array.from(orderedProductsList.children).map(item => ({
+            id: item.dataset.productId,
+            quantity: item.dataset.quantity,
+        }));
+
+        const orderData = {
+            addressDetails: customerData,
+            shippingMethod: shippingMethod,
+            orderProducts: orderedProducts,
+        };
+
+        fetch('http://localhost:8080/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json().then(error => Promise.reject(error));
+                }
+            })
+            .then(data => {
+                console.log('Order created:', data);
+                // Refresh the order list after adding a new order
+                fetchOrders();
+                // Clear the form fields
+                document.getElementById('newOrderForm').reset();
+            })
+            .catch(error => {
+                console.error('Error creating order:', error);
+
+                if (error && error.details) {
+                    // Display error message if applicable
+                    alert(error.details);
+                }
+                if (error && error.violations) {
+                    // Display validation errors
+                    displayOrderFormErrors(error.violations);
+                }
+            });
+    }
+
+    function displayOrderFormErrors(violations) {
+        const errorList = document.createElement('ul');
+        errorList.id = 'error-list';
+
+        violations.forEach(violation => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${violation.field}: ${violation.message}`;
+            errorList.appendChild(listItem);
+        });
+
+        // Display the error list in your form
+        const form = document.getElementById('orderForm');
+        form.appendChild(errorList);
+        console.log(errorList);
+    }
+
+    function clearOrderFormErrors() {
+        // Remove the error list from the form
+        const form = document.getElementById('orderForm');
+        const errorList = form.querySelector('#error-list');
+
+        if (errorList) {
+            form.removeChild(errorList);
+        }
+    }
+
+
+</script>
+</body>
+</html>
