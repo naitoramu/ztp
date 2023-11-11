@@ -32,7 +32,7 @@ public record ResponseEntity<T>(
 	}
 
 
-	enum ContentType {
+	public enum ContentType {
 		JSON("application/json"), JSON_PROBLEM("application/problem+json");
 
 		final String contentType;
