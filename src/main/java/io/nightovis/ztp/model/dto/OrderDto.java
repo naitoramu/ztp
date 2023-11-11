@@ -1,7 +1,6 @@
 package io.nightovis.ztp.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.nightovis.ztp.model.ShippingMethod;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

@@ -1,7 +1,7 @@
 package io.nightovis.ztp.model.mapper;
 
 import io.nightovis.ztp.model.domain.AddressDetails;
-import io.nightovis.ztp.model.domain.Deliverer;
+import io.nightovis.ztp.service.delivery.DeliveryStrategy;
 import io.nightovis.ztp.model.domain.Order;
 import io.nightovis.ztp.model.domain.OrderProduct;
 import io.nightovis.ztp.model.dto.AddressDetailsDto;
@@ -42,7 +42,7 @@ public class OrderMapper {
 			new HashSet<>(),
 			resultSet.getDouble("total_cost"),
 			resultSet.getDouble("shipping_cost"),
-			Deliverer.getByString(resultSet.getString("shipping_method"))
+			DeliveryStrategy.getByString(resultSet.getString("shipping_method"))
 		);
 	}
 
@@ -74,7 +74,7 @@ public class OrderMapper {
 	}
 
 	public static Order toDomain(OrderDto dto) {
-		Deliverer deliverer = Deliverer.fromMethod(dto.shippingMethod());
+		DeliveryStrategy deliveryStrategy = DeliveryStrategy.fromMethod(dto.shippingMethod());
 		AddressDetails addressDetails = new AddressDetails(
 			dto.addressDetails().firstName(),
 			dto.addressDetails().lastName(),
@@ -88,8 +88,8 @@ public class OrderMapper {
 			addressDetails,
 			dto.orderProducts().stream().map(OrderMapper::toDomain).collect(Collectors.toSet()),
 			dto.totalCost(),
-			deliverer.calculateShippingCost(addressDetails),
-			deliverer
+			deliveryStrategy.calculateShippingCost(addressDetails),
+			deliveryStrategy
 		);
 	}
 

@@ -37,26 +37,33 @@ public class OrderService {
 		for (Map.Entry<Long, Long> entry : productIdToQuantity.entrySet()) {
 			Long id = entry.getKey();
 			Long quantity = entry.getValue();
-			Long availableQuantity = Optional.ofNullable(productIdToAvailableQuantity.get(id))
-				.map(ProductInfo::quantity)
-				.orElseThrow(() -> new ProblemOccurredException(Problems.resourceNotFound("product", id)));
+			Long availableQuantity = getAvailableQuantity(productIdToAvailableQuantity, id);
 
-			if (quantity > availableQuantity) {
-				throw new ProblemOccurredException(
-					Problems.exceedingAvailableQuantity(id, quantity, availableQuantity)
-				);
-			}
+			checkProductAvailability(quantity, availableQuantity, id);
 
 			updatedProductQuantities.put(id, availableQuantity - quantity);
 			totalCost += productIdToAvailableQuantity.get(id).price() * quantity;
 		}
-
 		totalCost += order.shippingCost();
 
 		Order createdOrder = OrderRepository.create(order.totalCost(totalCost));
 		ProductRepository.updateProductsQuantity(updatedProductQuantities);
 
 		return createdOrder;
+	}
+
+	private static void checkProductAvailability(Long quantity, Long availableQuantity, Long id) {
+		if (quantity > availableQuantity) {
+			throw new ProblemOccurredException(
+				Problems.exceedingAvailableQuantity(id, quantity, availableQuantity)
+			);
+		}
+	}
+
+	private static Long getAvailableQuantity(Map<Long, ProductInfo> productIdToAvailableQuantity, Long id) {
+		return Optional.ofNullable(productIdToAvailableQuantity.get(id))
+			.map(ProductInfo::quantity)
+			.orElseThrow(() -> new ProblemOccurredException(Problems.resourceNotFound("product", id)));
 	}
 
 	public record ProductInfo(

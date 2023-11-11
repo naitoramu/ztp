@@ -1,10 +1,11 @@
-package io.nightovis.ztp.model.domain;
+package io.nightovis.ztp.service.delivery;
 
-import io.nightovis.ztp.model.ShippingMethod;
+import io.nightovis.ztp.model.dto.ShippingMethod;
+import io.nightovis.ztp.model.domain.AddressDetails;
 
-public interface Deliverer {
+public interface DeliveryStrategy {
 
-	static Deliverer getByString(String deliverer) {
+	static DeliveryStrategy getByString(String deliverer) {
 		return switch (deliverer) {
 			case "POSTAL" -> new Post();
 			case "COURIER" -> new Courier();
@@ -12,7 +13,7 @@ public interface Deliverer {
 		};
 	}
 
-	static Deliverer fromMethod(ShippingMethod method) {
+	static DeliveryStrategy fromMethod(ShippingMethod method) {
 		return switch (method) {
 			case POSTAL -> new Post();
 			case COURIER -> new Courier();

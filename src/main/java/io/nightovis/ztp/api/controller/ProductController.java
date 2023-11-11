@@ -1,6 +1,6 @@
 package io.nightovis.ztp.api.controller;
 
-import io.nightovis.ztp.api.servlet.ResponseEntity;
+import io.nightovis.ztp.api.servlet.util.ResponseEntity;
 import io.nightovis.ztp.problem.ProblemOccurredException;
 import io.nightovis.ztp.problem.Problems;
 import io.nightovis.ztp.model.dto.ProductDto;

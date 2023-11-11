@@ -1,4 +1,4 @@
-package io.nightovis.ztp.api.servlet;
+package io.nightovis.ztp.api.servlet.util;
 
 import io.nightovis.ztp.util.JsonMapper;
 

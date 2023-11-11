@@ -1,6 +1,6 @@
 package io.nightovis.ztp.problem;
 
-import io.nightovis.ztp.api.servlet.HttpMethod;
+import io.nightovis.ztp.api.servlet.util.HttpMethod;
 import jakarta.validation.ConstraintViolation;
 
 import java.net.HttpURLConnection;

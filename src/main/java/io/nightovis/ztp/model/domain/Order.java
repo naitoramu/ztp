@@ -1,5 +1,7 @@
 package io.nightovis.ztp.model.domain;
 
+import io.nightovis.ztp.service.delivery.DeliveryStrategy;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -8,19 +10,19 @@ public final class Order {
 	private final AddressDetails addressDetails;
 	private final Set<OrderProduct> orderProducts;
 	private final double shippingCost;
-	private final Deliverer deliverer;
+	private final DeliveryStrategy deliveryStrategy;
 
 	private double totalCost;
 
 	public Order(long id, AddressDetails addressDetails, Set<OrderProduct> orderProducts,
-	             double totalCost, double shippingCost, Deliverer deliverer) {
+	             double totalCost, double shippingCost, DeliveryStrategy deliveryStrategy) {
 
 		this.id = id;
 		this.addressDetails = addressDetails;
 		this.orderProducts = orderProducts;
 		this.totalCost = totalCost;
 		this.shippingCost = shippingCost;
-		this.deliverer = deliverer;
+		this.deliveryStrategy = deliveryStrategy;
 	}
 
 	public long id() {
@@ -39,8 +41,8 @@ public final class Order {
 		return shippingCost;
 	}
 
-	public Deliverer deliverer() {
-		return deliverer;
+	public DeliveryStrategy deliverer() {
+		return deliveryStrategy;
 	}
 
 	public double totalCost() {
@@ -62,12 +64,12 @@ public final class Order {
 			Objects.equals(this.orderProducts, that.orderProducts) &&
 			Double.doubleToLongBits(this.totalCost) == Double.doubleToLongBits(that.totalCost) &&
 			Double.doubleToLongBits(this.shippingCost) == Double.doubleToLongBits(that.shippingCost) &&
-			Objects.equals(this.deliverer, that.deliverer);
+			Objects.equals(this.deliveryStrategy, that.deliveryStrategy);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, addressDetails, orderProducts, totalCost, shippingCost, deliverer);
+		return Objects.hash(id, addressDetails, orderProducts, totalCost, shippingCost, deliveryStrategy);
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public final class Order {
 			"orderProducts=" + orderProducts + ", " +
 			"totalCost=" + totalCost + ", " +
 			"shippingCost=" + shippingCost + ", " +
-			"deliverer=" + deliverer + ']';
+			"deliverer=" + deliveryStrategy + ']';
 	}
 
 }

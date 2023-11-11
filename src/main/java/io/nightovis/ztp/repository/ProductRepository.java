@@ -42,7 +42,8 @@ public class ProductRepository {
 	}
 
 	public static Map<Long, OrderService.ProductInfo> fetchProductsQuantity(Set<Long> productIds) {
-		String query = String.format(SELECT_PRODUCTS_INFO_QUERY, productIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
+		String query = String.format(
+			SELECT_PRODUCTS_INFO_QUERY, productIds.stream().map(String::valueOf).collect(Collectors.joining(",")));
 		try (Statement statement = Database.getConnection().createStatement()) {
 			ResultSet resultSet = statement.executeQuery(query);
 			return ProductMapper.toIdQuantityMap(resultSet);
@@ -54,7 +55,8 @@ public class ProductRepository {
 	public static Product create(Product product) {
 		try (PreparedStatement statement = Database.getConnection().prepareStatement(
 			INSERT_PRODUCT_QUERY,
-			Statement.RETURN_GENERATED_KEYS)) {
+			Statement.RETURN_GENERATED_KEYS
+		)) {
 			setProductParameters(statement, product);
 			int affectedRows = statement.executeUpdate();
 			return retrieveGeneratedProduct(statement, affectedRows);
@@ -66,7 +68,8 @@ public class ProductRepository {
 	public static Product update(long id, Product product) {
 		try (PreparedStatement statement = Database.getConnection().prepareStatement(
 			UPDATE_PRODUCT_QUERY,
-			Statement.RETURN_GENERATED_KEYS)) {
+			Statement.RETURN_GENERATED_KEYS
+		)) {
 			setProductParameters(statement, product);
 			statement.setLong(5, id);
 			int affectedRows = statement.executeUpdate();
@@ -79,15 +82,11 @@ public class ProductRepository {
 	public static void updateProductsQuantity(Map<Long, Long> productIdToQuantity) {
 		try (PreparedStatement statement = Database.getConnection().prepareStatement(UPDATE_PRODUCTS_QUANTITY_QUERY)) {
 
-			productIdToQuantity.forEach((id, quantity) -> {
-				try {
-					statement.setLong(1, quantity);
-					statement.setLong(2, id);
-					statement.addBatch();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			});
+			for (Map.Entry<Long, Long> entry : productIdToQuantity.entrySet()) {
+				statement.setLong(1, entry.getValue());
+				statement.setLong(2, entry.getKey());
+				statement.addBatch();
+			}
 
 			statement.clearParameters();
 			statement.executeBatch();
