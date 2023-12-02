@@ -1,5 +1,6 @@
 package io.nightovis.ztp.controller;
 
+import io.nightovis.ztp.model.domain.AuditLog;
 import io.nightovis.ztp.model.dto.ProductDto;
 import io.nightovis.ztp.model.mapper.ProductMapper;
 import io.nightovis.ztp.problem.ProblemOccurredException;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -60,5 +62,12 @@ public class ProductController {
 		productService.delete(productId);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping("/{productId}/audit")
+	public ResponseEntity<List<AuditLog>> fetchAuditLogsByProductId(@PathVariable String productId) throws ProblemOccurredException {
+		List<AuditLog> logs = productService.fetchAuditLogsByProductId(productId);
+
+		return ResponseEntity.ok(logs);
 	}
 }

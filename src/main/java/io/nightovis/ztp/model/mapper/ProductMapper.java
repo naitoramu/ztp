@@ -1,5 +1,6 @@
 package io.nightovis.ztp.model.mapper;
 
+import io.nightovis.ztp.model.domain.AuditLog;
 import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.model.dto.ProductDto;
 import io.nightovis.ztp.model.mongo.ProductMongo;
@@ -18,7 +19,7 @@ public class ProductMapper {
 
 	public static Product toDomain(ProductDto dto) {
 		return new Product(
-			dto.id(),
+			null,
 			dto.name(),
 			dto.description(),
 			dto.price(),
@@ -32,7 +33,8 @@ public class ProductMapper {
 			product.name(),
 			product.description(),
 			product.price(),
-			product.availableQuantity()
+			product.availableQuantity(),
+			product.auditLogs().stream().map(AuditLog::fromMongo).toList()
 		);
 	}
 
@@ -42,7 +44,8 @@ public class ProductMapper {
 			product.name(),
 			product.description(),
 			product.price(),
-			product.availableQuantity()
+			product.availableQuantity(),
+			product.auditLogs().stream().map(AuditLog::toMongo).toList()
 		);
 	}
 }

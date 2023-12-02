@@ -1,5 +1,7 @@
 package io.nightovis.ztp.model.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public final class Product {
@@ -8,19 +10,21 @@ public final class Product {
 	private final String description;
 	private final double price;
 	private final long availableQuantity;
+	private final List<AuditLog> auditLogs;
 
-	public Product(
-		String id,
-		String name,
-		String description,
-		double price,
-		long availableQuantity
-	) {
+	public Product(String id, String name, String description, double price, long availableQuantity) {
+		this(id, name, description, price, availableQuantity, new ArrayList<>());
+	}
+
+	public Product(String id, String name, String description, double price,
+	               long availableQuantity, List<AuditLog> auditLogs) {
+
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.availableQuantity = availableQuantity;
+		this.auditLogs = auditLogs;
 	}
 
 	public String id() {
@@ -42,6 +46,10 @@ public final class Product {
 
 	public double price() {
 		return price;
+	}
+
+	public List<AuditLog> auditLogs() {
+		return auditLogs;
 	}
 
 	public long availableQuantity() {
@@ -74,5 +82,4 @@ public final class Product {
 			"price=" + price + ", " +
 			"availableQuantity=" + availableQuantity + ']';
 	}
-
 }
