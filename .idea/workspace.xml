@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="missing json property annotation" />
+    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="missing json property annotation">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/component/ProductDetailsViewModel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/component/ProductListViewModel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/type/Violation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductDetailsView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductListView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/ProductDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductDto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/ProductSummaryDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductSummaryDto.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,13 +28,14 @@
         <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="projects/2-bdd-tests" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,34 +53,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "projects/3-mvvm",
-    "last_opened_file_path": "/home/kuba/Repositories/ztp/src/test/resources/bdd",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;projects/3-mvvm&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kuba/Repositories/ztp/component&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/kuba/Repositories/ztp/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/component" />
       <recent name="$PROJECT_DIR$/src/test/resources/bdd" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/model/type" />
       <recent name="$PROJECT_DIR$/src/test/resources/bdd" />
       <recent name="$PROJECT_DIR$/src/test/resources" />
     </key>
@@ -188,9 +204,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Maven.simple-servlet [jetty:run]" />
         <item itemvalue="Maven.simple-servlet [clean,package]" />
-        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.CucumberIntegrationTest" />
         <item itemvalue="Cucumber Java.Scenario: audit log is being added, when the product is being updated" />
       </list>
@@ -222,7 +238,7 @@
       <workItem from="1702930647893" duration="2265000" />
       <workItem from="1702937701443" duration="485000" />
       <workItem from="1703108843173" duration="1006000" />
-      <workItem from="1703109861157" duration="411000" />
+      <workItem from="1703109861157" duration="3683000" />
     </task>
     <task id="LOCAL-00001" summary="project initialization">
       <option name="closed" value="true" />
@@ -272,7 +288,23 @@
       <option name="project" value="LOCAL" />
       <updated>1703109791039</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="almost ready - without caching">
+      <option name="closed" value="true" />
+      <created>1703110440564</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703110440564</updated>
+    </task>
+    <task id="LOCAL-00008" summary="almost ready - without caching">
+      <option name="closed" value="true" />
+      <created>1703110446025</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703110446025</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +329,7 @@
     <MESSAGE value="product audit with tests" />
     <MESSAGE value="report" />
     <MESSAGE value="missing json property annotation" />
-    <option name="LAST_COMMIT_MESSAGE" value="missing json property annotation" />
+    <MESSAGE value="almost ready - without caching" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost ready - without caching" />
   </component>
 </project>

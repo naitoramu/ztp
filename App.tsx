@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Platform, StatusBar } from 'react-native';
+import {StyleSheet} from 'react-native';
 
-import { PaperProvider } from 'react-native-paper';
-import ProductList from './component/ProductList';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ProductDetails from './component/ProductDetails';
+import {PaperProvider} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ProductListView from './component/ProductListView';
+import ProductDetailsView from './component/ProductDetailsView';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,12 +18,12 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen
               name="ProductList"
-              component={ProductList}
+              component={ProductListView}
               options={{ title: 'Product List' }}
             />
             <Stack.Screen
               name="ProductDetails"
-              component={ProductDetails}
+              component={ProductDetailsView}
               options={{ title: 'Product Details' }}
             />
           </Stack.Navigator>
@@ -41,7 +41,5 @@ const styles = StyleSheet.create({
   },
   androidSafeArea: {
     flex: 1,
-    // backgroundColor: "white",
-    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   }
 });

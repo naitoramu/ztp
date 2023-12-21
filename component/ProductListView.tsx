@@ -1,48 +1,22 @@
-import { NavigationProp, useFocusEffect } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, ToastAndroid } from 'react-native';
-import { DataTable, IconButton } from 'react-native-paper';
-import { ProductSummaryDto } from '../dto/ProductSummaryDto';
+import {NavigationProp, useFocusEffect} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
+import {DataTable, IconButton} from 'react-native-paper';
+import ProductListViewModel from './ProductListViewModel';
 
 interface ProductListProps {
   navigation: NavigationProp<any>;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ navigation }) => {
-  const [products, setProducts] = useState<ProductSummaryDto[]>([]);
-
-  const showToast = (message: string): any => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  };
-
-  const fetchProducts = (): void => {
-    fetch('http://192.168.0.186:8080/v1/products')
-      .then(response => response.json())
-      .then((data: ProductSummaryDto[]) => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
-  };
-
-  const deleteProduct = (productId: string): void => {
-    fetch(`http://192.168.0.186:8080/v1/products/${productId}`, { method: 'DELETE' })
-      .then(response => (response.status === 204 ? showToast('Product successfully deleted') : showToast('Cannot delete product')))
-      .then(fetchProducts)
-      .catch(error => console.error('Error deleting products:', error));
-  };
-
-  const showDetails = (productId: string): void => {
-    console.log('Preview');
-    navigation.navigate('ProductDetails', { action: 'PREVIEW', productId: productId });
-  };
-
-  const editProduct = (productId: string): void => {
-    console.log('Edit');
-    navigation.navigate('ProductDetails', { action: 'UPDATE', productId: productId });
-  };
-
-  const addProduct = (): void => {
-    console.log('Add');
-    navigation.navigate('ProductDetails', { action: 'CREATE' });
-  };
+const ProductListView: React.FC<ProductListProps> = ({ navigation }) => {
+  const {
+    products,
+    fetchProducts,
+    addProduct,
+    editProduct,
+    deleteProduct,
+    showDetails
+  } = ProductListViewModel();
 
   useFocusEffect(() => {
     fetchProducts();
@@ -87,7 +61,7 @@ const ProductList: React.FC<ProductListProps> = ({ navigation }) => {
   );
 };
 
-export default ProductList;
+export default ProductListView;
 
 const styles = StyleSheet.create({
   container: {
