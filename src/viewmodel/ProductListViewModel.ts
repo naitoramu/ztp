@@ -1,27 +1,29 @@
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {ToastAndroid} from 'react-native';
-import {ProductSummaryDto} from '../model/type/ProductSummaryDto';
+import {ProductSummary} from '../model/type/ProductSummary';
+import ProductModel from "../model/ProductModel";
 
 const ProductListViewModel = () => {
-  const API_URL: string = 'http://192.168.0.186:8080';
   const navigation = useNavigation();
-  const [products, setProducts] = useState<ProductSummaryDto>([] as ProductSummaryDto[]);
+  const [products, setProducts] = useState([] as ProductSummary[]);
 
   const showToast = (message: string): any => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
   };
 
   const fetchProducts = (): void => {
-    fetch(`${API_URL}/v1/products`)
+    ProductModel().fetchProducts()
       .then(response => response.json())
-      .then((data: ProductSummaryDto[]) => setProducts(data))
+      .then((data: ProductSummary[]) => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
   };
 
   const deleteProduct = (productId: string): void => {
-    fetch(`${API_URL}/v1/products/${productId}`, { method: 'DELETE' })
-      .then(response => (response.status === 204 ? showToast('Product successfully deleted') : showToast('Cannot delete product')))
+    ProductModel().deleteProduct(productId)
+      .then(response => (response.status === 204
+        ? showToast('Product successfully deleted')
+        : showToast('Cannot delete product')))
       .then(fetchProducts)
       .catch(error => console.error('Error deleting products:', error));
   };
@@ -41,7 +43,7 @@ const ProductListViewModel = () => {
   return {
     products,
     showToast,
-    fetchProducts,
+    fetchProducts: fetchProducts,
     deleteProduct,
     showDetails,
     editProduct,

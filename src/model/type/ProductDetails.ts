@@ -1,4 +1,4 @@
-export class ProductDto {
+export class ProductDetails {
     private _id: string;
     private _name: string;
     private _description: string;

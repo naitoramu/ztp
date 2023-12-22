@@ -2,7 +2,7 @@ import {NavigationProp, useFocusEffect} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import {DataTable, IconButton} from 'react-native-paper';
-import ProductListViewModel from './ProductListViewModel';
+import ProductListViewModel from '../viewmodel/ProductListViewModel';
 
 interface ProductListProps {
   navigation: NavigationProp<any>;

@@ -2,7 +2,7 @@ import {NavigationProp, RouteProp} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
-import ProductDetailsViewModel from "./ProductDetailsViewModel";
+import ProductDetailsViewModel from "../viewmodel/ProductDetailsViewModel";
 
 interface ProductListProps {
   navigation: NavigationProp<any>;
@@ -29,7 +29,7 @@ const ProductDetailsView: React.FC<ProductListProps> = ({ route }) => {
 
   useEffect(() => {
     onInit();
-  });
+  }, [route.params.productId, route.params.action]);
 
   return (
     <View>

@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="missing json property annotation">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/component/ProductDetailsViewModel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/component/ProductListViewModel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/type/Violation.ts" afterDir="false" />
+    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="views and view models">
+      <change afterPath="$PROJECT_DIR$/model/ProductModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ProductDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductDetailsView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductListView.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/ProductDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductDto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/ProductSummaryDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductSummaryDto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductDetailsView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/view/ProductDetailsView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductDetailsViewModel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/viewmodel/ProductDetailsViewModel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductListView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/view/ProductListView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ProductListViewModel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/viewmodel/ProductListViewModel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/type/ProductDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductDetails.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/type/ProductSummaryDto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/model/type/ProductSummary.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,6 +329,7 @@
     <MESSAGE value="report" />
     <MESSAGE value="missing json property annotation" />
     <MESSAGE value="almost ready - without caching" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost ready - without caching" />
+    <MESSAGE value="views and view models" />
+    <option name="LAST_COMMIT_MESSAGE" value="views and view models" />
   </component>
 </project>

@@ -5,8 +5,8 @@ import {PaperProvider} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ProductListView from './component/ProductListView';
-import ProductDetailsView from './component/ProductDetailsView';
+import ProductListView from './src/view/ProductListView';
+import ProductDetailsView from './src/view/ProductDetailsView';
 
 const Stack = createNativeStackNavigator();
 
