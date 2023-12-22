@@ -22,15 +22,15 @@ const ProductListViewModel = () => {
   }
 
   const showDetails = (productId: string): void => {
-    navigation.navigate('ProductDetails', { action: 'PREVIEW', productId: productId });
+    navigation.navigate('ProductDetails', {action: 'PREVIEW', productId: productId});
   };
 
   const editProduct = (productId: string): void => {
-    navigation.navigate('ProductDetails', { action: 'UPDATE', productId: productId });
+    navigation.navigate('ProductDetails', {action: 'UPDATE', productId: productId});
   };
 
   const addProduct = (): void => {
-    navigation.navigate('ProductDetails', { action: 'CREATE' });
+    navigation.navigate('ProductDetails', {action: 'CREATE'});
   };
 
   const showToast = (message: string): any => {

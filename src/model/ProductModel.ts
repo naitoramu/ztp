@@ -12,11 +12,11 @@ const ProductModel = () => {
   const cache: Cache = new Cache({
     namespace: "products",
     policy: {
-        maxEntries: 50000,
-        stdTTL: 10
+      maxEntries: 50000,
+      stdTTL: 10
     },
     backend: AsyncStorage
-});
+  });
 
   const fetchProduct = async (productId: string): Promise<ProductDetails> =>
     fetchAndCache<ProductDetails>(`product-${productId}`, `${API_URL}/v1/products/${productId}`);
@@ -24,7 +24,7 @@ const ProductModel = () => {
   const fetchProducts = async (cached: boolean = true): Promise<ProductSummary[]> =>
     fetchAndCache<ProductSummary[]>('products-list', `${API_URL}/v1/products`, cached);
 
-const fetchAndCache = async <T>(cacheKey: string, url: string, cached: boolean = true): Promise<T> => {
+  const fetchAndCache = async <T>(cacheKey: string, url: string, cached: boolean = true): Promise<T> => {
     const dataFromCache: string | undefined = await cache.get(cacheKey);
 
     if (dataFromCache && cached) {

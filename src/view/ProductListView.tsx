@@ -8,7 +8,7 @@ interface ProductListProps {
   navigation: NavigationProp<any>;
 }
 
-const ProductListView: React.FC<ProductListProps> = ({ navigation }) => {
+const ProductListView: React.FC<ProductListProps> = ({navigation}) => {
   const {
     products,
     fetchProducts,
@@ -24,7 +24,7 @@ const ProductListView: React.FC<ProductListProps> = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => <IconButton icon="plus-box" iconColor="green" onPress={addProduct} />,
+      headerRight: () => <IconButton icon="plus-box" iconColor="green" onPress={addProduct}/>,
     });
   }, [navigation]);
 
@@ -46,13 +46,13 @@ const ProductListView: React.FC<ProductListProps> = ({ navigation }) => {
             <DataTable.Cell style={styles.nameColumn}>{product.name}</DataTable.Cell>
             <DataTable.Cell style={styles.priceColumn}>{product.price}</DataTable.Cell>
             <DataTable.Cell style={styles.iconColumn}>
-              <IconButton icon="magnify" iconColor="white" onPress={() => showDetails(product.id)} />
+              <IconButton icon="magnify" iconColor="white" onPress={() => showDetails(product.id)}/>
             </DataTable.Cell>
             <DataTable.Cell style={styles.iconColumn}>
-              <IconButton icon="square-edit-outline" iconColor="blue" onPress={() => editProduct(product.id)} />
+              <IconButton icon="square-edit-outline" iconColor="blue" onPress={() => editProduct(product.id)}/>
             </DataTable.Cell>
             <DataTable.Cell style={styles.iconColumn}>
-              <IconButton icon="delete" iconColor="red" onPress={() => deleteProduct(product.id)} />
+              <IconButton icon="delete" iconColor="red" onPress={() => deleteProduct(product.id)}/>
             </DataTable.Cell>
           </DataTable.Row>
         ))}

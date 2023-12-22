@@ -14,7 +14,7 @@ interface ProductListProps {
   }>
 }
 
-const ProductDetailsView: React.FC<ProductListProps> = ({ route }) => {
+const ProductDetailsView: React.FC<ProductListProps> = ({route}) => {
 
   const {
     product,
