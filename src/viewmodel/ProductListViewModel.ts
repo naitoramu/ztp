@@ -8,25 +8,18 @@ const ProductListViewModel = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([] as ProductSummary[]);
 
-  const showToast = (message: string): any => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  };
-
-  const fetchProducts = (): void => {
-    ProductModel().fetchProducts()
-      .then(response => response.json())
-      .then((data: ProductSummary[]) => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
+  const fetchProducts = (cached: boolean = true): void => {
+    ProductModel().fetchProducts(cached)
+      .then((products: ProductSummary[]) => setProducts(products))
+      .catch(error => showError(error));
   };
 
   const deleteProduct = (productId: string): void => {
     ProductModel().deleteProduct(productId)
-      .then(response => (response.status === 204
-        ? showToast('Product successfully deleted')
-        : showToast('Cannot delete product')))
-      .then(fetchProducts)
-      .catch(error => console.error('Error deleting products:', error));
-  };
+      .then(() => showToast('Product successfully deleted'))
+      .then(() => fetchProducts(false))
+      .catch(error => showError(error));
+  }
 
   const showDetails = (productId: string): void => {
     navigation.navigate('ProductDetails', { action: 'PREVIEW', productId: productId });
@@ -39,6 +32,14 @@ const ProductListViewModel = () => {
   const addProduct = (): void => {
     navigation.navigate('ProductDetails', { action: 'CREATE' });
   };
+
+  const showToast = (message: string): any => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  };
+
+  const showError = (message: string): any => {
+    ToastAndroid.show(message, ToastAndroid.LONG);
+  }
 
   return {
     products,

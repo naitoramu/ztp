@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import {ToastAndroid} from 'react-native';
 import {ProductDetails} from '../model/type/ProductDetails';
-import Violation from "../model/type/Violation";
 import {useNavigation} from "@react-navigation/native";
 import ProductModel from "../model/ProductModel";
 
@@ -17,9 +16,8 @@ const ProductDetailsView = (productId: string, action: string) => {
   const onInit = (): void => {
     if (action !== 'CREATE') {
       ProductModel().fetchProduct(productId)
-        .then(response => response.json())
-        .then((data: ProductDetails) => setProduct(data))
-        .catch(error => console.error(`Error fetching product with ID: ${productId}`, error));
+        .then((product: ProductDetails) => setProduct(product))
+        .catch(error => showError(error));
     }
   };
 
@@ -43,17 +41,13 @@ const ProductDetailsView = (productId: string, action: string) => {
     switch (action) {
       case 'CREATE':
         ProductModel().createProduct(product)
-          .then(response => (response.status === 201
-            ? navigation.navigate('ProductList')
-            : response.json().then(data => handleErrorResponse(data))))
-          .catch(error => console.error(`Error creating product with ID: ${product}`, error));
+          .then(_ => navigation.navigate('ProductList'))
+          .catch(error => showError(error));
         break;
       case 'UPDATE':
         ProductModel().updateProduct(product)
-          .then(response => (response.status === 200
-            ? navigation.navigate('ProductList')
-            : response.json().then(data => handleErrorResponse(data))))
-          .catch(error => console.error(`Error updating product with ID: ${product.id}`, error));
+          .then(_ => navigation.navigate('ProductList'))
+          .catch(error => showError(error));
         break;
       default:
         throw Error(`Unknown action: ${action}`);
@@ -64,13 +58,8 @@ const ProductDetailsView = (productId: string, action: string) => {
     return action === 'CREATE' || action === 'UPDATE';
   };
 
-
-  const handleErrorResponse = (data: { details: string, violations: Violation[] }): any => {
-    const violations: string = data.violations
-      .map((violation: Violation) => `${violation.field}: ${violation.message}`)
-      .join('\n');
-
-    ToastAndroid.show(`${data.details}\n${violations}`, ToastAndroid.LONG);
+  const showError = (message: string): any => {
+    ToastAndroid.show(message, ToastAndroid.LONG);
   }
 
   return {
