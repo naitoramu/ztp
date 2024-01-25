@@ -8,12 +8,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 
 @Document("audit_logs")
-public record AuditLogMongo(
+public record AuditLogMongo<T>(
 	@Id
 	String id,
 	String resourceId,
 	ResourceType resourceType,
 	AuditOperation operation,
+	T resource,
 	Instant timestamp
 ) {
 }

@@ -1,19 +1,16 @@
 package io.nightovis.ztp.service;
 
-import io.nightovis.ztp.model.AuditOperation;
 import io.nightovis.ztp.model.ResourceType;
 import io.nightovis.ztp.model.domain.AuditLog;
+import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.model.mapper.ProductMapper;
-import io.nightovis.ztp.model.mongo.AuditLogMongo;
 import io.nightovis.ztp.model.mongo.ProductMongo;
 import io.nightovis.ztp.problem.ProblemOccurredException;
 import io.nightovis.ztp.problem.Problems;
-import io.nightovis.ztp.model.domain.Product;
 import io.nightovis.ztp.repository.AuditLogRepository;
 import io.nightovis.ztp.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,15 +33,18 @@ public class ProductService {
 		return productRepository.findById(id).map(ProductMapper::toDomain);
 	}
 
-	public List<AuditLog> fetchAuditLogsByProductId(String productId) {
+	public List<AuditLog<Product>> fetchAuditLogsByProductId(String productId) {
 		return auditLogRepository.findByResourceIdAndResourceType(productId, ResourceType.PRODUCT).stream()
-			.map(AuditLog::fromMongo)
+			.map(ProductMapper::toDomain)
 			.toList();
 	}
 
 	public Product create(Product product) {
 		ProductMongo createdProduct = productRepository.insert(ProductMapper.toMongo(product));
-		auditLogRepository.save(generateAuditLog(createdProduct.id(), AuditOperation.CREATE));
+
+		AuditLog<Product> auditLog = AuditLog.resourceCreated(createdProduct.id(), ResourceType.PRODUCT, product);
+		auditLogRepository.save(ProductMapper.toMongo(auditLog));
+
 		return ProductMapper.toDomain(createdProduct);
 	}
 
@@ -54,7 +54,8 @@ public class ProductService {
 
 		ProductMongo updatedProduct = productRepository.save(ProductMapper.toMongo(product.id(existingProduct.id())));
 
-		auditLogRepository.save(generateAuditLog(updatedProduct.id(), AuditOperation.UPDATE));
+		AuditLog<Product> auditLog = AuditLog.resourceUpdated(updatedProduct.id(), ResourceType.PRODUCT, product);
+		auditLogRepository.save(ProductMapper.toMongo(auditLog));
 
 		return ProductMapper.toDomain(updatedProduct);
 	}
@@ -64,17 +65,9 @@ public class ProductService {
 			.orElseThrow(() -> productNotFoundException(id));
 
 		productRepository.deleteById(id);
-		auditLogRepository.save(generateAuditLog(id, AuditOperation.DELETE));
-	}
 
-	private static AuditLogMongo generateAuditLog(String productId, AuditOperation operation) {
-		return new AuditLogMongo(
-			null,
-			productId,
-			ResourceType.PRODUCT,
-			operation,
-			Instant.now()
-		);
+		AuditLog<Product> auditLog = AuditLog.resourceDeleted(id, ResourceType.PRODUCT);
+		auditLogRepository.save(ProductMapper.toMongo(auditLog));
 	}
 
 	private static ProblemOccurredException productNotFoundException(String id) {

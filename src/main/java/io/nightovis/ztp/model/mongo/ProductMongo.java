@@ -15,6 +15,9 @@ public record ProductMongo(
 	double price,
 	long availableQuantity,
 	@DBRef
-	List<AuditLogMongo> auditLogs
+	List<AuditLogMongo<ProductMongo>> auditLogs
 ) {
+	public ProductMongo(String id, String name, String description, double price, long availableQuantity) {
+		this(id, name, description, price, availableQuantity, null);
+	}
 }

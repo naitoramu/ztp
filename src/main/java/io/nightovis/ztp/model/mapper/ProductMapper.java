@@ -2,8 +2,12 @@ package io.nightovis.ztp.model.mapper;
 
 import io.nightovis.ztp.model.domain.AuditLog;
 import io.nightovis.ztp.model.domain.Product;
+import io.nightovis.ztp.model.dto.AuditLogDto;
 import io.nightovis.ztp.model.dto.ProductDto;
+import io.nightovis.ztp.model.mongo.AuditLogMongo;
 import io.nightovis.ztp.model.mongo.ProductMongo;
+
+import java.util.Optional;
 
 public class ProductMapper {
 
@@ -14,6 +18,16 @@ public class ProductMapper {
 			product.description(),
 			product.price(),
 			product.availableQuantity()
+		);
+	}
+
+	public static AuditLogDto<ProductDto> toDto(AuditLog<Product> log) {
+		return new AuditLogDto<>(
+			log.resourceId(),
+			log.resourceType(),
+			log.operation(),
+			log.resource().map(ProductMapper::toDto),
+			log.timestamp()
 		);
 	}
 
@@ -33,8 +47,18 @@ public class ProductMapper {
 			product.name(),
 			product.description(),
 			product.price(),
-			product.availableQuantity(),
-			product.auditLogs().stream().map(AuditLog::fromMongo).toList()
+			product.availableQuantity()
+		);
+	}
+
+	public static AuditLog<Product> toDomain(AuditLogMongo<ProductMongo> log) {
+		return new AuditLog<>(
+			log.id(),
+			log.resourceId(),
+			log.resourceType(),
+			log.operation(),
+			Optional.ofNullable(log.resource()).map(ProductMapper::toDomain),
+			log.timestamp()
 		);
 	}
 
@@ -44,8 +68,18 @@ public class ProductMapper {
 			product.name(),
 			product.description(),
 			product.price(),
-			product.availableQuantity(),
-			product.auditLogs().stream().map(AuditLog::toMongo).toList()
+			product.availableQuantity()
+		);
+	}
+
+	public static AuditLogMongo<ProductMongo> toMongo(AuditLog<Product> log) {
+		return new AuditLogMongo<>(
+			null,
+			log.resourceId(),
+			log.resourceType(),
+			log.operation(),
+			log.resource().map(ProductMapper::toMongo).orElse(null),
+			log.timestamp()
 		);
 	}
 }

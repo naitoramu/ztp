@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.nightovis.ztp.model.AuditOperation;
 import io.nightovis.ztp.model.ResourceType;
-import io.nightovis.ztp.model.domain.AuditLog;
+import io.nightovis.ztp.model.dto.AuditLogDto;
 import io.nightovis.ztp.model.dto.ProductDto;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.assertj.core.api.Assertions;
@@ -26,7 +26,7 @@ public class ProductSteps extends CucumberIntegrationTest {
 	private int responseStatusCode;
 	private Map<String, Object> requestBody = mockRequestBody();
 	private ProductDto responseProduct;
-	private List<AuditLog> responseAuditLogs;
+	private List<AuditLogDto<ProductDto>> responseAuditLogs;
 	private List<ProductDto> existingProducts;
 
 	@Before
@@ -118,13 +118,13 @@ public class ProductSteps extends CucumberIntegrationTest {
 
 	@And("the client receives {int} {string} {string} audit logs")
 	public void theClientReceivesAuditLogs(int logsCount, String operation, String resourceType) {
-		List<AuditLog> filteredAuditLogs = responseAuditLogs.stream()
+		List<AuditLogDto<ProductDto>> filteredAuditLogs = responseAuditLogs.stream()
 			.filter(l -> l.operation().equals(AuditOperation.valueOf(operation)))
 			.toList();
 
 		Assertions.assertThat(filteredAuditLogs).hasSize(logsCount);
 		Assertions.assertThat(filteredAuditLogs)
-			.extracting(AuditLog::resourceType)
+			.extracting(AuditLogDto::resourceType)
 			.containsOnly(ResourceType.valueOf(resourceType));
 	}
 
@@ -149,5 +149,5 @@ public class ProductSteps extends CucumberIntegrationTest {
 	}
 
 	private static class ProductList extends ArrayList<ProductDto> {}
-	private static class AuditLogList extends ArrayList<AuditLog> {}
+	private static class AuditLogList extends ArrayList<AuditLogDto<ProductDto>> {}
 }

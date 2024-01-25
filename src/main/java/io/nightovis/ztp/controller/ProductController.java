@@ -1,6 +1,8 @@
 package io.nightovis.ztp.controller;
 
 import io.nightovis.ztp.model.domain.AuditLog;
+import io.nightovis.ztp.model.domain.Product;
+import io.nightovis.ztp.model.dto.AuditLogDto;
 import io.nightovis.ztp.model.dto.ProductDto;
 import io.nightovis.ztp.model.mapper.ProductMapper;
 import io.nightovis.ztp.problem.ProblemOccurredException;
@@ -66,9 +68,8 @@ public class ProductController {
 	}
 
 	@GetMapping("/{productId}/audit")
-	public ResponseEntity<List<AuditLog>> fetchAuditLogsByProductId(@PathVariable String productId) throws ProblemOccurredException {
-		List<AuditLog> logs = productService.fetchAuditLogsByProductId(productId);
-
-		return ResponseEntity.ok(logs);
+	public ResponseEntity<List<AuditLogDto<ProductDto>>> fetchAuditLogsByProductId(@PathVariable String productId) throws ProblemOccurredException {
+		List<AuditLog<Product>> logs = productService.fetchAuditLogsByProductId(productId);
+		return ResponseEntity.ok(logs.stream().map(ProductMapper::toDto).toList());
 	}
 }
