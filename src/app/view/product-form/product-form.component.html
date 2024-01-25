@@ -1,0 +1,76 @@
+<div class="form-wrapper d-flex justify-content-center">
+  <form [formGroup]="productForm" class="col-6">
+
+    <h2><b>{{formTitle}}</b></h2>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">
+        Product name
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+        [readOnly]="!formIsEditable"
+      >
+      <app-input-error [control]="productForm.controls.name"></app-input-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="descriptionTextArea" class="form-label">
+        Description
+      </label>
+      <textarea
+        class="form-control"
+        id="descriptionTextArea"
+        formControlName="description"
+        [readOnly]="!formIsEditable">
+      </textarea>
+      <app-input-error [control]="productForm.controls.description"></app-input-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="priceInput" class="form-label">
+        Price
+      </label>
+      <input
+        type="number"
+        class="form-control"
+        id="priceInput"
+        formControlName="price"
+        [readOnly]="!formIsEditable"
+      >
+      <app-input-error [control]="productForm.controls.price" controlName="price"></app-input-error>
+    </div>
+
+    <div class="mb-3">
+      <label for="availableQuantity" class="form-label">
+        Available quantity
+      </label>
+      <input
+        type="number"
+        class="form-control"
+        id="availableQuantity"
+        formControlName="availableQuantity"
+        [readOnly]="!formIsEditable"
+      >
+      <app-input-error [control]="productForm.controls.availableQuantity" controlName="quantity"></app-input-error>
+    </div>
+
+    <button
+      *ngIf="formIsEditable"
+      type="submit"
+      class="btn btn-primary"
+      (click)="submitForm()"s
+      style="width: 100%">
+      Submit
+    </button>
+
+    <div *ngIf="!formIsEditable">
+      <button class="btn btn-primary d-inline action-btn" routerLink="/products/{{productId}}/edit">Edit</button>
+      <button class="btn btn-danger d-inline action-btn" (click)="deleteProduct()">Delete</button>
+    </div>
+
+  </form>
+</div>

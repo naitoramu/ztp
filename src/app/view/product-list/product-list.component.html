@@ -1,0 +1,10 @@
+<div *ngIf="products$ | async as productsResponse" class="row" style="margin-top: 20px">
+
+  <div *ngFor="let product of productsResponse" class="col-md-3">
+
+    <app-product-card [product]="product"></app-product-card>
+
+  </div>
+
+</div>
+

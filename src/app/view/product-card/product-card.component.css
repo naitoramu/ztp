@@ -1,0 +1,17 @@
+.card {
+  width: 100%;
+  height: 100%;
+}
+
+.details-link-wrapper {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.card-btn {
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}

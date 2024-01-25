@@ -1,0 +1,15 @@
+<div *ngIf="product" class="card">
+  <div class="details-link-wrapper" routerLink="{{product.id}}/details">
+    <img class="card-img-top"
+         alt="Product image"
+         src="{{product.img ? product.img : '../../assets/img-not-found.png'}}">
+    <div class="card-body">
+      <h5 class="card-title"><b>{{product.name}}</b></h5>
+      <p class="card-text" style="text-align: right">{{product.price}} zł</p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary card-btn" routerLink="{{product.id}}/edit">Edit</button>
+    <button class="btn btn-danger card-btn" (click)="deleteProduct(product.id)">Delete</button>
+  </div>
+</div>
