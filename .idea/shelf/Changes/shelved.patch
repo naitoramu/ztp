@@ -1,0 +1,308 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"07e39f6c-0111-449c-b378-27874e78e65c\" name=\"Changes\" comment=\"missing json property annotation\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Record\" />\n        <option value=\"Class\" />\n        <option value=\"Interface\" />\n        <option value=\"Enum\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"ROOT_SYNC\" value=\"DONT_SYNC\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 7\n}</component>\n  <component name=\"ProjectId\" id=\"2YP3V23bzM0wbEHZUDQHEbQcrHW\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"autoscrollFromSource\" value=\"true\" />\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"git-widget-placeholder\": \"projects/3-mvvm\",\n    \"last_opened_file_path\": \"/home/kuba/Repositories/ztp/src/test/resources/bdd\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.0\",\n    \"project.structure.side.proportion\": \"0.0\",\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/test/resources/bdd\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/src/test/resources/bdd\" />\n      <recent name=\"$PROJECT_DIR$/src/test/resources\" />\n    </key>\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\n      <recent name=\"io.nightovis.ztp.model.mongo\" />\n      <recent name=\"io.nightovis.ztp.repository\" />\n      <recent name=\"io.nightovis.ztp.model.domain\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Maven.simple-servlet [jetty:run]\">\n    <configuration name=\"Scenario: audit log is being added, when the product is being updated\" type=\"CucumberJavaRunConfigurationType\" factoryName=\"Cucumber java\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"CUCUMBER_CORE_VERSION\" value=\"5\" />\n      <option name=\"FILE_PATH\" value=\"$PROJECT_DIR$/src/test/resources/bdd/ProductAudit.feature\" />\n      <option name=\"GLUE\" value=\"io.nightovis.ztp.bdd\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"io.cucumber.core.cli.Main\" />\n      <module name=\"bdd-tests\" />\n      <option name=\"NAME_FILTER\" value=\"^audit log is being added\\, when the product is being updated$\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^audit log is being added\\, when the product is being updated$&quot;\" />\n      <option name=\"SUGGESTED_NAME\" value=\"Scenario: audit log is being added, when the product is being updated\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_WORKING_DIR$\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"io.cucumber.core.cli.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CucumberIntegrationTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"bdd-tests\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"io.nightovis.ztp.bdd.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"io.nightovis.ztp.bdd\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"io.nightovis.ztp.bdd.CucumberIntegrationTest\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"simple-servlet [clean,package]\" type=\"MavenRunConfiguration\" factoryName=\"Maven\" temporary=\"true\">\n      <MavenSettings>\n        <option name=\"myGeneralSettings\" />\n        <option name=\"myRunnerSettings\" />\n        <option name=\"myRunnerParameters\">\n          <MavenRunnerParameters>\n            <option name=\"cmdOptions\" />\n            <option name=\"profiles\">\n              <set />\n            </option>\n            <option name=\"goals\">\n              <list>\n                <option value=\"clean\" />\n                <option value=\"package\" />\n              </list>\n            </option>\n            <option name=\"pomFileName\" value=\"pom.xml\" />\n            <option name=\"profilesMap\">\n              <map />\n            </option>\n            <option name=\"projectsCmdOptionValues\">\n              <list />\n            </option>\n            <option name=\"resolveToWorkspace\" value=\"false\" />\n            <option name=\"workingDirPath\" value=\"$PROJECT_DIR$\" />\n          </MavenRunnerParameters>\n        </option>\n      </MavenSettings>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"simple-servlet [jetty:run]\" type=\"MavenRunConfiguration\" factoryName=\"Maven\" temporary=\"true\">\n      <MavenSettings>\n        <option name=\"myGeneralSettings\" />\n        <option name=\"myRunnerSettings\" />\n        <option name=\"myRunnerParameters\">\n          <MavenRunnerParameters>\n            <option name=\"cmdOptions\" />\n            <option name=\"profiles\">\n              <set />\n            </option>\n            <option name=\"goals\">\n              <list>\n                <option value=\"jetty:run\" />\n              </list>\n            </option>\n            <option name=\"pomFileName\" value=\"pom.xml\" />\n            <option name=\"profilesMap\">\n              <map />\n            </option>\n            <option name=\"projectsCmdOptionValues\">\n              <list />\n            </option>\n            <option name=\"resolveToWorkspace\" value=\"false\" />\n            <option name=\"workingDirPath\" value=\"$PROJECT_DIR$\" />\n          </MavenRunnerParameters>\n        </option>\n      </MavenSettings>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Application\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"bdd-tests\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"io.nightovis.ztp.Application\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"io.nightovis.ztp.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Maven.simple-servlet [jetty:run]\" />\n        <item itemvalue=\"Maven.simple-servlet [clean,package]\" />\n        <item itemvalue=\"Spring Boot.Application\" />\n        <item itemvalue=\"JUnit.CucumberIntegrationTest\" />\n        <item itemvalue=\"Cucumber Java.Scenario: audit log is being added, when the product is being updated\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"07e39f6c-0111-449c-b378-27874e78e65c\" name=\"Changes\" comment=\"final improvements\" />\n      <created>1700413415699</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1700413415699</updated>\n      <workItem from=\"1700413420874\" duration=\"14213000\" />\n      <workItem from=\"1700495871596\" duration=\"3667000\" />\n      <workItem from=\"1700988983442\" duration=\"151000\" />\n      <workItem from=\"1700989151396\" duration=\"2297000\" />\n      <workItem from=\"1700993543747\" duration=\"1217000\" />\n      <workItem from=\"1701013279228\" duration=\"9746000\" />\n      <workItem from=\"1701032621551\" duration=\"8400000\" />\n      <workItem from=\"1701276950418\" duration=\"6813000\" />\n      <workItem from=\"1701536758701\" duration=\"12041000\" />\n      <workItem from=\"1701970378045\" duration=\"395000\" />\n      <workItem from=\"1702066645651\" duration=\"4000\" />\n      <workItem from=\"1702501059459\" duration=\"2269000\" />\n      <workItem from=\"1702577993227\" duration=\"654000\" />\n      <workItem from=\"1702673957155\" duration=\"635000\" />\n      <workItem from=\"1702847892577\" duration=\"715000\" />\n      <workItem from=\"1702930647893\" duration=\"2265000\" />\n      <workItem from=\"1702937701443\" duration=\"485000\" />\n      <workItem from=\"1703108843173\" duration=\"1006000\" />\n      <workItem from=\"1703109861157\" duration=\"411000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"project initialization\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1700413468080</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1700413468081</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"implementing crud operations\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1700429569117</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1700429569118</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"cucumber - part 1\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1701041007366</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1701041007366</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"product audit with tests\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1701546350152</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1701546350152</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"report\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1701548352028</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1701548352029</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"missing json property annotation\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1703109791038</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1703109791039</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"final improvements\" />\n    <MESSAGE value=\"project initialization\" />\n    <MESSAGE value=\"implementing crud operations\" />\n    <MESSAGE value=\"cucumber - part 1\" />\n    <MESSAGE value=\"product audit with tests\" />\n    <MESSAGE value=\"report\" />\n    <MESSAGE value=\"missing json property annotation\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"missing json property annotation\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5117f99e2a4c4763cf8aba2ac8cc7b53fede5dd4)
++++ b/.idea/workspace.xml	(date 1703113544601)
+@@ -4,7 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="missing json property annotation" />
++    <list default="true" id="07e39f6c-0111-449c-b378-27874e78e65c" name="Changes" comment="almost ready - without caching">
++      <change afterPath="$PROJECT_DIR$/component/ProductListViewController.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/component/ProductDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductDetailsView.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/component/ProductList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/component/ProductListView.tsx" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -51,7 +57,7 @@
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "WebServerToolWindowFactoryState": "false",
+     "git-widget-placeholder": "projects/3-mvvm",
+-    "last_opened_file_path": "/home/kuba/Repositories/ztp/src/test/resources/bdd",
++    "last_opened_file_path": "/home/kuba/Repositories/ztp/component",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -61,11 +67,13 @@
+     "project.structure.proportion": "0.0",
+     "project.structure.side.proportion": "0.0",
+     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
++    "ts.external.directory.path": "/home/kuba/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/plugins/javascript-impl/jsLanguageServicesImpl/external",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/component" />
+       <recent name="$PROJECT_DIR$/src/test/resources/bdd" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
+@@ -222,7 +230,7 @@
+       <workItem from="1702930647893" duration="2265000" />
+       <workItem from="1702937701443" duration="485000" />
+       <workItem from="1703108843173" duration="1006000" />
+-      <workItem from="1703109861157" duration="411000" />
++      <workItem from="1703109861157" duration="3683000" />
+     </task>
+     <task id="LOCAL-00001" summary="project initialization">
+       <option name="closed" value="true" />
+@@ -272,7 +280,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1703109791039</updated>
+     </task>
+-    <option name="localTasksCounter" value="7" />
++    <task id="LOCAL-00007" summary="almost ready - without caching">
++      <option name="closed" value="true" />
++      <created>1703110440564</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1703110440564</updated>
++    </task>
++    <task id="LOCAL-00008" summary="almost ready - without caching">
++      <option name="closed" value="true" />
++      <created>1703110446025</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1703110446025</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -297,6 +321,7 @@
+     <MESSAGE value="product audit with tests" />
+     <MESSAGE value="report" />
+     <MESSAGE value="missing json property annotation" />
+-    <option name="LAST_COMMIT_MESSAGE" value="missing json property annotation" />
++    <MESSAGE value="almost ready - without caching" />
++    <option name="LAST_COMMIT_MESSAGE" value="almost ready - without caching" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\nimport { StyleSheet, View, Platform, StatusBar } from 'react-native';\n\nimport { PaperProvider } from 'react-native-paper';\nimport ProductList from './component/ProductList';\nimport { SafeAreaView } from 'react-native-safe-area-context';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createNativeStackNavigator } from '@react-navigation/native-stack';\nimport ProductDetails from './component/ProductDetails';\n\nconst Stack = createNativeStackNavigator();\n\nexport default function App() {\n  return (\n    <NavigationContainer>\n      <SafeAreaView style={styles.androidSafeArea}>\n        <PaperProvider>\n          <Stack.Navigator>\n            <Stack.Screen\n              name=\"ProductList\"\n              component={ProductList}\n              options={{ title: 'Product List' }}\n            />\n            <Stack.Screen\n              name=\"ProductDetails\"\n              component={ProductDetails}\n              options={{ title: 'Product Details' }}\n            />\n          </Stack.Navigator>\n        </PaperProvider>\n      </SafeAreaView>\n    </NavigationContainer>\n\n  );\n}\n\nconst styles = StyleSheet.create({\n  container: {\n    flex: 1,\n    backgroundColor: '#fff'\n  },\n  androidSafeArea: {\n    flex: 1,\n    // backgroundColor: \"white\",\n    // paddingTop: Platform.OS === \"android\" ? StatusBar.currentHeight : 0\n  }\n});\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/App.tsx b/App.tsx
+--- a/App.tsx	(revision 5117f99e2a4c4763cf8aba2ac8cc7b53fede5dd4)
++++ b/App.tsx	(date 1703113468128)
+@@ -1,12 +1,12 @@
+ import React from 'react';
+-import { StyleSheet, View, Platform, StatusBar } from 'react-native';
++import {StyleSheet} from 'react-native';
+ 
+-import { PaperProvider } from 'react-native-paper';
+-import ProductList from './component/ProductList';
+-import { SafeAreaView } from 'react-native-safe-area-context';
+-import { NavigationContainer } from '@react-navigation/native';
+-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+-import ProductDetails from './component/ProductDetails';
++import {PaperProvider} from 'react-native-paper';
++import {SafeAreaView} from 'react-native-safe-area-context';
++import {NavigationContainer} from '@react-navigation/native';
++import {createNativeStackNavigator} from '@react-navigation/native-stack';
++import ProductListView from './component/ProductListView';
++import ProductDetailsView from './component/ProductDetailsView';
+ 
+ const Stack = createNativeStackNavigator();
+ 
+@@ -18,12 +18,12 @@
+           <Stack.Navigator>
+             <Stack.Screen
+               name="ProductList"
+-              component={ProductList}
++              component={ProductListView}
+               options={{ title: 'Product List' }}
+             />
+             <Stack.Screen
+               name="ProductDetails"
+-              component={ProductDetails}
++              component={ProductDetailsView}
+               options={{ title: 'Product Details' }}
+             />
+           </Stack.Navigator>
+Index: component/ProductList.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/component/ProductList.tsx b/component/ProductListView.tsx
+rename from component/ProductList.tsx
+rename to component/ProductListView.tsx
+--- a/component/ProductList.tsx	(revision 5117f99e2a4c4763cf8aba2ac8cc7b53fede5dd4)
++++ b/component/ProductListView.tsx	(date 1703112783323)
+@@ -3,46 +3,21 @@
+ import { ScrollView, StyleSheet, ToastAndroid } from 'react-native';
+ import { DataTable, IconButton } from 'react-native-paper';
+ import { ProductSummaryDto } from '../dto/ProductSummaryDto';
++import ProductListViewController from './ProductListViewController';
+ 
+ interface ProductListProps {
+   navigation: NavigationProp<any>;
+ }
+ 
+-const ProductList: React.FC<ProductListProps> = ({ navigation }) => {
+-  const [products, setProducts] = useState<ProductSummaryDto[]>([]);
+-
+-  const showToast = (message: string): any => {
+-    ToastAndroid.show(message, ToastAndroid.SHORT);
+-  };
+-
+-  const fetchProducts = (): void => {
+-    fetch('http://192.168.0.186:8080/v1/products')
+-      .then(response => response.json())
+-      .then((data: ProductSummaryDto[]) => setProducts(data))
+-      .catch(error => console.error('Error fetching products:', error));
+-  };
+-
+-  const deleteProduct = (productId: string): void => {
+-    fetch(`http://192.168.0.186:8080/v1/products/${productId}`, { method: 'DELETE' })
+-      .then(response => (response.status === 204 ? showToast('Product successfully deleted') : showToast('Cannot delete product')))
+-      .then(fetchProducts)
+-      .catch(error => console.error('Error deleting products:', error));
+-  };
+-
+-  const showDetails = (productId: string): void => {
+-    console.log('Preview');
+-    navigation.navigate('ProductDetails', { action: 'PREVIEW', productId: productId });
+-  };
+-
+-  const editProduct = (productId: string): void => {
+-    console.log('Edit');
+-    navigation.navigate('ProductDetails', { action: 'UPDATE', productId: productId });
+-  };
+-
+-  const addProduct = (): void => {
+-    console.log('Add');
+-    navigation.navigate('ProductDetails', { action: 'CREATE' });
+-  };
++const ProductListView: React.FC<ProductListProps> = ({ navigation }) => {
++  const {
++    products,
++    fetchProducts,
++    addProduct,
++    editProduct,
++    deleteProduct,
++    showDetails
++  } = ProductListViewController();
+ 
+   useFocusEffect(() => {
+     fetchProducts();
+@@ -87,7 +62,7 @@
+   );
+ };
+ 
+-export default ProductList;
++export default ProductListView;
+ 
+ const styles = StyleSheet.create({
+   container: {
+Index: component/ProductDetails.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/component/ProductDetails.tsx b/component/ProductDetailsView.tsx
+rename from component/ProductDetails.tsx
+rename to component/ProductDetailsView.tsx
+--- a/component/ProductDetails.tsx	(revision 5117f99e2a4c4763cf8aba2ac8cc7b53fede5dd4)
++++ b/component/ProductDetailsView.tsx	(date 1703111508751)
+@@ -15,7 +15,7 @@
+   }>
+ }
+ 
+-const ProductDetails: React.FC<ProductListProps> = ({ route, navigation }) => {
++const ProductDetailsView: React.FC<ProductListProps> = ({ route, navigation }) => {
+   const { productId, action } = route.params;
+   const [product, setProduct] = useState<ProductDto>({
+     name: '',
+@@ -123,7 +123,7 @@
+   );
+ };
+ 
+-export default ProductDetails;
++export default ProductDetailsView;
+ 
+ type Violation = {
+   field: string;
+Index: component/ProductListViewController.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/component/ProductListViewController.tsx b/component/ProductListViewController.tsx
+new file mode 100644
+--- /dev/null	(date 1703113013967)
++++ b/component/ProductListViewController.tsx	(date 1703113013967)
+@@ -0,0 +1,56 @@
++import {useNavigation} from '@react-navigation/native';
++import {useState} from 'react';
++import {ToastAndroid} from 'react-native';
++import {ProductSummaryDto} from '../dto/ProductSummaryDto';
++
++const ProductListViewController = () => {
++  const API_URL: string = 'http://192.168.0.186:8080';
++  const navigation = useNavigation();
++  const [products, setProducts] = useState([] as ProductSummaryDto[]);
++
++  const showToast = (message: string): any => {
++    ToastAndroid.show(message, ToastAndroid.SHORT);
++  };
++
++  const fetchProducts = (): void => {
++    fetch(`${API_URL}/v1/products`)
++      .then(response => response.json())
++      .then((data: ProductSummaryDto[]) => setProducts(data))
++      .catch(error => console.error('Error fetching products:', error));
++  };
++
++  const deleteProduct = (productId: string): void => {
++    fetch(`${API_URL}/v1/products/${productId}`, { method: 'DELETE' })
++      .then(response => (response.status === 204 ? showToast('Product successfully deleted') : showToast('Cannot delete product')))
++      .then(fetchProducts)
++      .catch(error => console.error('Error deleting products:', error));
++  };
++
++  const showDetails = (productId: string): void => {
++    console.log('Preview');
++    navigation.navigate('ProductDetails', { action: 'PREVIEW', productId: productId });
++  };
++
++  const editProduct = (productId: string): void => {
++    console.log('Edit');
++    navigation.navigate('ProductDetails', { action: 'UPDATE', productId: productId });
++  };
++
++  const addProduct = (): void => {
++    console.log('Add');
++    navigation.navigate('ProductDetails', { action: 'CREATE' });
++  };
++
++  return {
++    products,
++    showToast,
++    fetchProducts,
++    deleteProduct,
++    showDetails,
++    editProduct,
++    addProduct
++  };
++
++};
++
++export default ProductListViewController;
+\ No newline at end of file

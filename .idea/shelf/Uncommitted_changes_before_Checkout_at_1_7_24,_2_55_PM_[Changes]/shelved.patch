@@ -1,0 +1,39 @@
+Index: src/main/java/io/nightovis/ztp/controller/ProductController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package io.nightovis.ztp.controller;\n\nimport io.nightovis.ztp.model.domain.AuditLog;\nimport io.nightovis.ztp.model.dto.ProductDto;\nimport io.nightovis.ztp.model.mapper.ProductMapper;\nimport io.nightovis.ztp.problem.ProblemOccurredException;\nimport io.nightovis.ztp.problem.Problems;\nimport io.nightovis.ztp.service.ProductService;\nimport jakarta.validation.Valid;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.net.URI;\nimport java.util.List;\nimport java.util.Set;\nimport java.util.stream.Collectors;\n\n@RestController\n@RequestMapping(\"/v1/products\")\npublic class ProductController {\n\n\tprivate final ProductService productService;\n\n\tpublic ProductController(ProductService productService) {\n\t\tthis.productService = productService;\n\t}\n\n\t@GetMapping\n\tpublic ResponseEntity<Set<ProductDto>> fetchAllProducts() {\n\t\tSet<ProductDto> products = productService.fetchAllProducts().stream()\n\t\t\t.map(ProductMapper::toDto)\n\t\t\t.collect(Collectors.toSet());\n\n\t\treturn ResponseEntity.ok(products);\n\t}\n\n\t@GetMapping(\"/{productId}\")\n\tpublic ResponseEntity<ProductDto> fetchById(@PathVariable String productId) throws ProblemOccurredException {\n\t\tProductDto product = productService.fetchProductById(productId)\n\t\t\t.map(ProductMapper::toDto)\n\t\t\t.orElseThrow(() -> new ProblemOccurredException(Problems.resourceNotFound(\"product\", productId)));\n\n\t\treturn ResponseEntity.ok(product);\n\t}\n\n\t@PostMapping\n\tpublic ResponseEntity<ProductDto> create(@RequestBody @Valid ProductDto product) throws ProblemOccurredException {\n\t\tProductDto createdProduct = ProductMapper.toDto(productService.create(ProductMapper.toDomain(product)));\n\t\tString location = \"/products/\" + createdProduct.id();\n\t\treturn ResponseEntity.created(URI.create(location)).body(createdProduct);\n\t}\n\n\t@PutMapping(\"/{productId}\")\n\tpublic ResponseEntity<ProductDto> update(@PathVariable String productId, @RequestBody @Valid ProductDto product) throws ProblemOccurredException {\n\t\tProductDto updatedProduct = ProductMapper.toDto(productService.update(productId, ProductMapper.toDomain(product)));\n\n\t\treturn ResponseEntity.ok(updatedProduct);\n\t}\n\n\t@DeleteMapping(\"/{productId}\")\n\tpublic ResponseEntity<?> delete(@PathVariable String productId) throws ProblemOccurredException {\n\t\tproductService.delete(productId);\n\n\t\treturn ResponseEntity.noContent().build();\n\t}\n\n\t@GetMapping(\"/{productId}/audit\")\n\tpublic ResponseEntity<List<AuditLog>> fetchAuditLogsByProductId(@PathVariable String productId) throws ProblemOccurredException {\n\t\tList<AuditLog> logs = productService.fetchAuditLogsByProductId(productId);\n\n\t\treturn ResponseEntity.ok(logs);\n\t}\n}\n
+===================================================================
+diff --git a/src/main/java/io/nightovis/ztp/controller/ProductController.java b/src/main/java/io/nightovis/ztp/controller/ProductController.java
+--- a/src/main/java/io/nightovis/ztp/controller/ProductController.java	
++++ b/src/main/java/io/nightovis/ztp/controller/ProductController.java	
+@@ -17,6 +17,7 @@
+ 
+ @RestController
+ @RequestMapping("/v1/products")
++@CrossOrigin(origins = "http://localhost:4200")
+ public class ProductController {
+ 
+ 	private final ProductService productService;
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n\n    <groupId>io.nightovis.ztp</groupId>\n    <artifactId>bdd-tests</artifactId>\n    <version>1.0-SNAPSHOT</version>\n\n    <properties>\n        <maven.compiler.source>21</maven.compiler.source>\n        <maven.compiler.target>21</maven.compiler.target>\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter</artifactId>\n            <version>3.1.5</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework.boot</groupId>\n                    <artifactId>spring-boot-starter-logging</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-web</artifactId>\n            <version>3.1.5</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-test</artifactId>\n            <version>3.1.5</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-data-mongodb</artifactId>\n            <version>3.1.5</version>\n        </dependency>\n        <dependency>\n            <groupId>org.hibernate.validator</groupId>\n            <artifactId>hibernate-validator</artifactId>\n            <version>8.0.1.Final</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-databind</artifactId>\n            <version>2.16.0</version>\n        </dependency>\n\n        <dependency>\n            <groupId>io.cucumber</groupId>\n            <artifactId>cucumber-java</artifactId>\n            <version>7.14.0</version>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>io.cucumber</groupId>\n            <artifactId>cucumber-junit</artifactId>\n            <version>7.14.0</version>\n            <scope>test</scope>\n        </dependency>\n        <dependency>\n            <groupId>io.cucumber</groupId>\n            <artifactId>cucumber-spring</artifactId>\n            <version>7.14.0</version>\n            <scope>test</scope>\n        </dependency>\n\n        <dependency>\n            <groupId>org.apache.commons</groupId>\n            <artifactId>commons-lang3</artifactId>\n            <version>3.14.0</version>\n        </dependency>\n\n    </dependencies>\n\n</project>
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	
++++ b/pom.xml	
+@@ -79,4 +79,13 @@
+ 
+     </dependencies>
+ 
++    <build>
++        <plugins>
++            <plugin>
++                <groupId>org.springframework.boot</groupId>
++                <artifactId>spring-boot-maven-plugin</artifactId>
++            </plugin>
++        </plugins>
++    </build>
++
+ </project>
+\ No newline at end of file
