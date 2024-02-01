@@ -16,6 +16,7 @@ public class ProductMapper {
 			product.id(),
 			product.name(),
 			product.description(),
+			product.imgUrl(),
 			product.price(),
 			product.availableQuantity()
 		);
@@ -36,6 +37,7 @@ public class ProductMapper {
 			null,
 			dto.name(),
 			dto.description(),
+			dto.imgUrl(),
 			dto.price(),
 			dto.availableQuantity()
 		);
@@ -46,6 +48,7 @@ public class ProductMapper {
 			product.id(),
 			product.name(),
 			product.description(),
+			product.imgUrl(),
 			product.price(),
 			product.availableQuantity()
 		);
@@ -67,6 +70,7 @@ public class ProductMapper {
 			product.id(),
 			product.name(),
 			product.description(),
+			product.imgUrl(),
 			product.price(),
 			product.availableQuantity()
 		);

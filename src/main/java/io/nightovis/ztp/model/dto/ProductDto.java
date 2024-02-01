@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.net.URL;
+
 public record ProductDto(
 
 	String id,
@@ -16,6 +18,9 @@ public record ProductDto(
 	@NotBlank
 	@Size(min = 1, max = 1024)
 	String description,
+
+	@NotNull
+	URL imgUrl,
 
 	@NotNull
 	Double price,
